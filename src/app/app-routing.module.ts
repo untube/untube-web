@@ -5,11 +5,13 @@ import { VideoplayerComponent } from './videoplayer/videoplayer.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryvideolistComponent } from './categoryvideolist/categoryvideolist.component';
 import { SearchlistComponent} from './searchlist/searchlist.component';
-import { SignInComponent} from './sign-in/sign-in.component'
+import { SignInComponent} from './sign-in/sign-in.component';
+import { SignUpComponent} from './sign-up/sign-up.component';
 
 const routes: Routes = [
 
   {path: 'sign-in', component: SignInComponent},
+  {path: 'sign-up', component: SignUpComponent},
   {path: 'home',component: VideolistComponent},
   {path: 'watch/:id', component: VideoplayerComponent},
   {path: 'categories', component: CategoriesComponent},

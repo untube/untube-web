@@ -25,8 +25,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SignInComponent } from './sign-in/sign-in.component';
-
-
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 @NgModule({
@@ -39,7 +38,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     SearchComponent,
     SearchlistComponent,
     HeaderComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
