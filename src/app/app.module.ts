@@ -24,6 +24,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 
@@ -37,7 +38,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CategoryvideolistComponent,
     SearchComponent,
     SearchlistComponent,
-    HeaderComponent
+    HeaderComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
