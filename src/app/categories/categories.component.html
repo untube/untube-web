@@ -1,0 +1,24 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+      <h3>Categories</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <mat-grid-list cols="4" rowHeight="200px">
+      <mat-grid-tile *ngFor="let category of categories$ | async" (click) = "onSelect (category)">
+        <img height="200px"  src= "../assets/índice.jpeg" alt= {{category.category}}>
+        <mat-grid-tile-footer>
+          <h1>{{category.category | uppercase}}</h1>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+</div>
+
