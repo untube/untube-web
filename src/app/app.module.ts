@@ -16,7 +16,6 @@ import { MatVideoModule } from 'mat-video';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryvideolistComponent } from './categoryvideolist/categoryvideolist.component';
 import {WebsocketService} from './websocket.service';
-import {StreamService} from './stream.service';
 import { SearchComponent } from './search/search.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchlistComponent } from './searchlist/searchlist.component';
@@ -66,7 +65,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTabsModule,
     MatSidenavModule
   ],
-  providers: [WebsocketService,StreamService],
+  providers: [WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
