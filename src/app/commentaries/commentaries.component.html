@@ -1,10 +1,17 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-3">
-      <img src="/assets/default-avatar.svg" alt="Default Avatar" class="d-block mx-auto border border-secondary rounded-circle" height="30%">
+  <div class="row justify-content-center align-items-end">
+    <div class="col-2">
+      <img src="/assets/default-avatar.png" alt="default-avatar" class="rounded-circle d-block mx-auto" width="75%">
     </div>
-    <div class="col-3">
-      <h4>{{username}}</h4>
+    <div class="col-10">
+      <h5 class="username">{{username}}:</h5>
+      <div class="input-group row justify-content-center align-items-center border border-secondary rounded">
+          <textarea class="form-control custom-control border-0 mb-2" rows="2" style="resize:none" placeholder="¿Qué estás pensando?"></textarea>     
+          <span class="input-group-addon btn btn-secondary rounded-circle mx-2 ">
+            <i class="fa fa-paper-plane fa-lg my-2" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+  
