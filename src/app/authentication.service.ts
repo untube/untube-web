@@ -6,7 +6,7 @@ import { User } from './shared/user';
 })
 export class AuthenticationService {
   sign_in(user: User) {
-    throw new Error("Method not implemented.");
+    
   }
 
   constructor() { }

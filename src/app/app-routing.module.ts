@@ -7,11 +7,13 @@ import { CategoryvideolistComponent } from './categoryvideolist/categoryvideolis
 import { SearchlistComponent} from './searchlist/searchlist.component';
 import { SignInComponent} from './sign-in/sign-in.component';
 import { SignUpComponent} from './sign-up/sign-up.component';
+import { CommentariesComponent } from './commentaries/commentaries.component';
 
 const routes: Routes = [
 
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
+  {path: 'commentaries', component: CommentariesComponent},
   {path: 'home',component: VideolistComponent},
   {path: 'watch/:id', component: VideoplayerComponent},
   {path: 'categories', component: CategoriesComponent},

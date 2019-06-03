@@ -3,7 +3,7 @@ import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 
-const uri = 'http://192.168.99.101:5001/graphql'; //Graphql server URL
+const uri = 'http://34.73.14.85:5000/graphiql'; //Graphql server URL
 
 export function createApollo(httpLink: HttpLink) {
   return {
