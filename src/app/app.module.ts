@@ -25,6 +25,7 @@ import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 @NgModule({
@@ -38,8 +39,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     SearchlistComponent,
     HeaderComponent,
     SignInComponent,
-    SignUpComponent
-  ],
+    SignUpComponent,
+    UploadComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

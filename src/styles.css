@@ -1,28 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 	
 /* for sidenav to take a whole page */
-html, body { 
-    margin: 0;
-    height: 100%;
-}
 
-.container {
-    margin: 20px;
-    display:flex;
-}
+
 
 .h-90{
     height: 91.5% !important;
 }
 
 .w-30 {
-    width: 30% !important;
+    width: 60% !important;
 }
 
 select:invalid { 
     color: gray; 
+
 }
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+  }
+  

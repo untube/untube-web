@@ -7,6 +7,7 @@ import { CategoryvideolistComponent } from './categoryvideolist/categoryvideolis
 import { SearchlistComponent} from './searchlist/searchlist.component';
 import { SignInComponent} from './sign-in/sign-in.component';
 import { SignUpComponent} from './sign-up/sign-up.component';
+import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
 
@@ -17,7 +18,9 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'categories/:id', component: CategoryvideolistComponent},
   {path: 'search/:name', component: SearchlistComponent},
+  {path: 'profile/:id/upload-video', component: UploadComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full' }
+
 
 ];
 
@@ -26,3 +29,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+

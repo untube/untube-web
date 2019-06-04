@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 import { Query, Video, VIDEO_BY_ID } from '../shared/video';
 import { WebsocketService } from '../websocket.service';
-import { basename } from 'path';
 
 @Component({  
   selector: 'app-videoplayer',
@@ -54,7 +53,7 @@ export class VideoplayerComponent implements OnInit {
 
   }) */
 
-  let socket = new WebSocket("ws://localhost:3001/ws");
+  let socket = new WebSocket("ws://localhost:3002/ws");
 
 
 
@@ -70,9 +69,11 @@ export class VideoplayerComponent implements OnInit {
      // this.blob =  convertion(this.base64)
       this.base += "=="
       this.baseURL += this.base;
-      const blob = convertion(this.base);
-      this.baseURL = URL.createObjectURL(blob);
+      console.log(this.baseURL)
 
+      const blob = convertion(this.base);
+
+      this.baseURL = URL.createObjectURL(blob);
 
 
   };
