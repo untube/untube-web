@@ -4,13 +4,15 @@
       <img src="/assets/default-avatar.png" alt="default-avatar" class="rounded-circle d-block mx-auto" width="75%">
     </div>
     <div class="col-10">
-      <h5 class="username">{{username}}:</h5>
-      <div class="input-group row justify-content-center align-items-center border border-secondary rounded">
-          <textarea class="form-control custom-control border-0 mb-2" rows="2" style="resize:none" placeholder="¿Qué estás pensando?"></textarea>     
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <h6 class="username">{{username}}:</h6>
+        <div class="input-group row justify-content-center align-items-center border rounded">
+          <textarea class="form-control custom-control border-0 mb-2" rows="2" style="resize:none" placeholder="¿Qué estás pensando?" formControlName="description"></textarea>     
           <span class="input-group-addon btn btn-secondary rounded-circle mx-2 ">
             <i class="fa fa-paper-plane fa-lg my-2" aria-hidden="true"></i>
           </span>
         </div>
+      </form>
       </div>
     </div>
   </div>
