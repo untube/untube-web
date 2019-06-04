@@ -1,41 +1,31 @@
 import { Injectable } from '@angular/core';
-import * as Rx from 'rxjs';
+import { Observable } from 'rxjs';
+import { fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable()
 export class WebsocketService {
+  private websocket: any;
 
-  constructor() { }
 
-  private subject: Rx.Subject<MessageEvent>;
-
-  public connect(url): Rx.Subject<MessageEvent>{
-    if (!this.subject){
-      this.subject = this.create(url);
-      console.log("Succesfully Connect: " +url);
-    }
-    return this.subject;
+  public sendMessage(text:string){
+    this.websocket.send(text);
   }
-
-  private create(url): Rx.Subject<MessageEvent>{
-    let ws = new WebSocket(url);
-
-    let observable = Rx.Observable.create(
-      (obs:Rx.Observer<MessageEvent>) => {
-        ws.onmessage = obs.next.bind(obs)
-        ws.onerror = obs.error.bind(obs)
-        ws.onclose = obs.complete.bind(obs)
-        return ws.close.bind(ws)
-      }
-    )
-    let observer = {
-      next: (data: Object ) => {
-        if (ws.readyState === WebSocket.OPEN ){
-          ws.send(JSON.stringify(data));
-        }
-      }
+  public GetInstanceStatus(): Observable<any>{
+    var reader = new FileReader();
+    this.websocket = new WebSocket("ws://localhost:3000/ws");
+    
+    return fromEvent(this.websocket,'message').pipe(map((response: string) => {
+       // logic here for determining if res is a blob based on headers
+       // here is what you'd do for a blob though:
+       return response
+      }));
     }
-    return Rx.Subject.create(observer, observable);
+  sendText(json: Object) {
+    this.websocket.send(json);
+  }
+  sendBinary(bytes: any) {
+    this.websocket.send(bytes);
   }
 }

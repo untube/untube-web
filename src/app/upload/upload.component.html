@@ -1,0 +1,65 @@
+<div>
+    <div [hidden]="submitted">
+      <h1>Subir Video</h1>
+      <form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
+        <div class="form-group">
+          <label for="Title">Titulo</label>
+          <input type="text" class="form-control" id="title"
+                 required
+                 [(ngModel)]="title" name="title"
+                 #name="ngModel">
+        </div>
+
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <input type="text" class="form-control" id="description"
+                   required
+                   [(ngModel)]="description" name="description"
+                   #name="ngModel">
+          </div>
+   
+        <div class="form-group">
+          <label for="category">Categoria</label>
+          <select class="form-control" id="category"
+                  required
+                  [(ngModel)]="category" name="category"
+                  #power="ngModel">
+            <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+          </select>
+        </div>
+   
+
+      </form>
+    </div>
+
+
+<div div >
+    <div *ngIf="error">
+      {{ error.message }}
+    </div>
+    <div *ngIf="uploadResponse.status === 'error'">
+      {{ uploadResponse.message }}
+    </div>
+    <div *ngIf="uploadResponse.status === 'progress'">
+  
+      <div role="progressbar" [style.width.%]="uploadResponse.message" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        {{uploadResponse.message}}%
+      </div>
+  
+    </div>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input type="file" name="video" (change)="onFileChange($event)" />
+      <button type="submit" class="btn btn-success" [disabled]="!uploadForm.form.valid"  color = #3d74d9>Guardar</button>  
+    </form>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+

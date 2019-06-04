@@ -19,6 +19,7 @@ export type Query = {
     allVideos: Video[];
     videoById: Video;
     videosByName: Video[];
+    createdVideo: Video;
 }
 
 export const ALL_VIDEOS = gql ` 
@@ -53,3 +54,15 @@ query videosByName($name: String!){
   }
 }
 `
+
+export const CREATE_VIDEO = gql`
+
+mutation createVideo($video: Video!) {
+  createVideo(video: $video) {
+    id
+    title
+    description
+  }
+}
+`;
+

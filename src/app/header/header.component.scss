@@ -1,16 +1,28 @@
 $lt-gray: #ddd;
-$background-dark: #4b9cda;
-$background-light: #3a53d0;
+$background-light: #4b9cda;
+$background-dark: #3a53d0;
 $background-pale: #3d74d9;
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
-    margin: 0px auto;
+    margin: 2px auto;
     padding: $pad-up-down $pad-left-right;
 }
 
 .jumbotron {
-    @include zero-margin(70px,30px);
+    @include zero-margin(70x,50px);
     background: $background-light ;
     color:floralwhite;
-    min-height: 150px;
+    min-height: 50px;
 }
+
+
+.container {
+    margin: 20px;
+    display:flex;
+}
+
+
+.mat-toolbar.mat-primary {
+    background: #007bff;
+    color: #fff;
+  }

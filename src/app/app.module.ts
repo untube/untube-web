@@ -16,7 +16,6 @@ import { MatVideoModule } from 'mat-video';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryvideolistComponent } from './categoryvideolist/categoryvideolist.component';
 import {WebsocketService} from './websocket.service';
-import {StreamService} from './stream.service';
 import { SearchComponent } from './search/search.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchlistComponent } from './searchlist/searchlist.component';
@@ -27,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CommentariesComponent } from './commentaries/commentaries.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 @NgModule({
@@ -40,7 +40,8 @@ import { CommentariesComponent } from './commentaries/commentaries.component';
     SearchlistComponent,
     HeaderComponent,
     SignInComponent,
-    SignUpComponent, 
+    SignUpComponent,
+    UploadComponent,
     CommentariesComponent
   ],
   imports: [
@@ -70,7 +71,7 @@ import { CommentariesComponent } from './commentaries/commentaries.component';
     MatTabsModule,
     MatSidenavModule
   ],
-  providers: [WebsocketService,StreamService],
+  providers: [WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

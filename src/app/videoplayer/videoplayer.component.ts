@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 import { Query, Video, VIDEO_BY_ID } from '../shared/video';
-import {StreamService} from '../stream.service';
+import { WebsocketService } from '../websocket.service';
 
 @Component({  
   selector: 'app-videoplayer',
@@ -13,22 +13,27 @@ import {StreamService} from '../stream.service';
 })
 export class VideoplayerComponent implements OnInit {
 
-  public videoId;
+  videoId;
   video$: Observable <Video>;
-  constructor(private route: ActivatedRoute,private apollo: Apollo , private streamService: StreamService) { 
-    streamService.message.subscribe(msg => {
-      console.log("Response From WebSocket Server:" + msg );
-    })
+  base: string = "";
+  base64: string
+  blob;
+  blobURL;
+  baseURL = "data:video/mp4;base64,"
+
+  constructor(private route: ActivatedRoute,private apollo: Apollo , private wss: WebsocketService) { 
+
   }
 
-  private message = {
-    author: 'Harry Potter',
-    message: 'I am the new dark Lord'
-  }
 
-  sendMsg(){
-    console.log("New Message Sent from Client ");
-    this.streamService.message.next(this.message);
+  _base64ToArrayBuffer(base64) {
+    var binary_string =  window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array( len );
+    for (var i = 0; i < len; i++)        {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer
   }
 
   ngOnInit() {
@@ -38,20 +43,75 @@ export class VideoplayerComponent implements OnInit {
     console.log(this.videoId)
   });
 
-  console.log(this.video$)
-
-
   this.video$ = this.apollo.watchQuery<Query>({ query: VIDEO_BY_ID,variables: {id: this.videoId}
   }).valueChanges.pipe(map(result => result.data.videoById));
   
 
-  console.log(this.video$)
+  /*this.wss.GetInstanceStatus().subscribe((msg) => {
+    var foo = msg.data
+    this.base64 += foo
+
+  }) */
+
+  let socket = new WebSocket("ws://localhost:3002/ws");
+
+
+
+  socket.onopen = () => {
+      console.log("Successfully Connected");
+      socket.send("Hi From the Client!")
+  };
+  
+  socket.onclose = event => {
+      console.log("Socket Closed Connection: ", event);
+      socket.send("Client Closed!")
+     // this.base64 = this.base
+     // this.blob =  convertion(this.base64)
+      this.base += "=="
+      this.baseURL += this.base;
+      console.log(this.baseURL)
+
+      const blob = convertion(this.base);
+
+      this.baseURL = URL.createObjectURL(blob);
+
+
+  };
+
+  socket.onmessage = (msg) => {
+    this.base += msg.data 
+  } 
+    
+  socket.onerror = error => {
+      console.log("Socket Error: ", error);
+  };
+
+
+  function convertion(base64){
+
+    var contentType = "video/mp4";
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], {type: contentType});
+
+    return blob
+  
+  }
+
+}
 
 }
 
 
 
-}
+
+
 
 
 
