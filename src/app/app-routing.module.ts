@@ -7,12 +7,17 @@ import { CategoryvideolistComponent } from './categoryvideolist/categoryvideolis
 import { SearchlistComponent} from './searchlist/searchlist.component';
 import { SignInComponent} from './sign-in/sign-in.component';
 import { SignUpComponent} from './sign-up/sign-up.component';
+<<<<<<< HEAD
 import { UploadComponent } from './upload/upload.component';
+=======
+import { CommentariesComponent } from './commentaries/commentaries.component';
+>>>>>>> 45c39ce3be25004182cbd75f7bf644abfe666f38
 
 const routes: Routes = [
 
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
+  {path: 'commentaries', component: CommentariesComponent},
   {path: 'home',component: VideolistComponent},
   {path: 'watch/:id', component: VideoplayerComponent},
   {path: 'categories', component: CategoriesComponent},

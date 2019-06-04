@@ -18,6 +18,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 select:invalid { 
     color: gray; 
+<<<<<<< HEAD
 
 }
 
@@ -36,3 +37,6 @@ select:invalid {
 
   }
   
+=======
+}
+>>>>>>> 45c39ce3be25004182cbd75f7bf644abfe666f38
