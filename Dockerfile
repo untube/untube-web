@@ -9,11 +9,12 @@ ENV PATH /untube-web/node_modules/.bin:$PATH
 
 # install and cache app dependencies
 COPY package.json /untube-web/package.json
-RUN npm install
 RUN npm install -g @angular/cli@7.3.9
 
 # add app
 COPY .  /untube-web
+
+RUN npm install
 
 # start app
 CMD ng serve --host 0.0.0.0 --disableHostCheck
