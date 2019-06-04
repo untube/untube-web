@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Query, Commentary, COMMENTARIES_BY_VIDEO } from '../shared/commentary';
+import { Query, Commentary, COMMENTARIES_BY_VIDEO, CREATE_COMMENTARY } from '../shared/commentary';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
@@ -28,15 +28,15 @@ export class CommentariesComponent implements OnInit {
 
   onSubmit() {
     this.commentary = this.commentForm.value
-/*     this.apollo.mutate({
-      mutation: createCommentary,
-      variables: {
-        commentary: Commentary
+    this.apollo.mutate({
+        mutation: CREATE_COMMENTARY,
+        variables: {
+          commentary: Commentary
+        }
+      }).subscribe(({data}) => {
+        console.log('data', data);
       }
-    }).subscribe(({data}) => {
-      console.log('data', data);
-    }
-    ); */
+    );
   }
 
 }
