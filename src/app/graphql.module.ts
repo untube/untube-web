@@ -4,7 +4,7 @@ import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 
 //const uri = 'http://192.168.99.103:5001/graphql'; //Graphql server URL
-const uri = 'http://34.73.94.91:5000/graphql'
+const uri = 'untube-api/graphiql'
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({uri}),
