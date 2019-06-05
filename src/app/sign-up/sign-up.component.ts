@@ -17,7 +17,7 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   categories: Category[];
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.user = new User();
@@ -35,7 +35,12 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     this.user = this.signUpForm.value;
-    this.authenticationService.sign_in(this.user);
+    this.authService.sign_in(this.user).subscribe(({data}) => {
+        console.log('Got data', data);
+      }, (error) => {
+        console.log('There was an error sending the mutation', error);
+      });
   }
+
 
 }

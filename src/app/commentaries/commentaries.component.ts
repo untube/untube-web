@@ -14,7 +14,8 @@ export class CommentariesComponent implements OnInit {
   commentary: Commentary;
   commentForm: FormGroup;
   commentaries$: any;
-  id_video: any;
+  id_user: Number = 123;
+  id_video: String = "dfhasduio132"
   constructor(private apollo: Apollo) { }
 
   ngOnInit() {
@@ -29,14 +30,14 @@ export class CommentariesComponent implements OnInit {
   onSubmit() {
     this.commentary = this.commentForm.value
     this.apollo.mutate({
-        mutation: CREATE_COMMENTARY,
-        variables: {
-          commentary: Commentary
-        }
-      }).subscribe(({data}) => {
-        console.log('data', data);
+      mutation: CREATE_COMMENTARY,
+      variables: {
+        subject: this.commentary.subject,
+        description: this.commentary.description,
+        id_video: this.id_video,
+        id_user: this.id_user
       }
-    );
+    })
   }
 
 }
