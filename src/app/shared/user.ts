@@ -12,7 +12,7 @@ export class User {
 }
 
 export const SIGN_UP = gql`
-  mutation createUser ($name: String, $nickname: String, $email: String, $password: String, $password_confirmation: String){
+  mutation createUser ($name: String, $nickname: String, $email: String!, $password: String!, $password_confirmation: String!){
     createUser(user: {
         name: $name
         nickname: $nickname
