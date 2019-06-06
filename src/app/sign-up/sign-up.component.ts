@@ -35,7 +35,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     this.user = this.signUpForm.value;
-    this.authService.sign_in(this.user).subscribe(({data}) => {
+    this.authService.sign_up(this.user).subscribe(({data}) => {
         console.log('Got data', data);
       }, (error) => {
         console.log('There was an error sending the mutation', error);
