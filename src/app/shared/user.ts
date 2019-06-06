@@ -20,7 +20,10 @@ export const SIGN_UP = gql`
         password: $password
         password_confirmation: $password_confirmation
     }) {
-        data
+        status
+        data {
+          id
+        }
     }
   }
 `;
