@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 import { Query, Video, VIDEO_BY_ID } from '../shared/video';
 import { WebsocketService } from '../websocket.service';
+import { Socket } from 'dgram';
 
 @Component({  
   selector: 'app-videoplayer',
@@ -13,13 +14,14 @@ import { WebsocketService } from '../websocket.service';
 })
 export class VideoplayerComponent implements OnInit {
 
+  mode: number = 1;
   videoId;
   video$: Observable <Video>;
   base: string = "";
   base64: string
   blob;
   blobURL;
-  baseURL = "data:video/mp4;base64,"
+  baseURL = "data:video/mp4;base64,";
 
   constructor(private route: ActivatedRoute,private apollo: Apollo , private wss: WebsocketService) { 
 
@@ -56,57 +58,86 @@ export class VideoplayerComponent implements OnInit {
   let socket = new WebSocket("ws://localhost:3002/ws");
 
 
-
+  /*
   socket.onopen = () => {
       console.log("Successfully Connected");
       socket.send("Hi From the Client!")
   };
-  
+  */
+
   socket.onclose = event => {
       console.log("Socket Closed Connection: ", event);
       socket.send("Client Closed!")
-     // this.base64 = this.base
-     // this.blob =  convertion(this.base64)
-      this.base += "=="
-      this.baseURL += this.base;
-      console.log(this.baseURL)
-
-      const blob = convertion(this.base);
-
-      this.baseURL = URL.createObjectURL(blob);
-
-
   };
 
+  /*
   socket.onmessage = (msg) => {
     this.base += msg.data 
-  } 
+  } */
     
   socket.onerror = error => {
       console.log("Socket Error: ", error);
   };
-
-
-  function convertion(base64){
-
-    var contentType = "video/mp4";
-    const byteCharacters = atob(base64);
-    const byteNumbers = new Array(byteCharacters.length);
-
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-
-    const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], {type: contentType});
-
-    return blob
   
+
+  const video = document.querySelector('#video')
+  const mimeCodec = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+
+  let mediaSource
+  let sourceBuffer
+
+  if('MediaSource' in window && MediaSource.isTypeSupported(mimeCodec)){
+
+    mediaSource = new MediaSource()
+    mediaSource.addEventListener('sourceopen',()=> {
+      console.log('Media Source Open', mediaSource.readyState);
+      sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
+      sourceBuffer.addEventListener('updateend',() =>{
+        mediaSource.endOfStream();
+        console.log('Media Source UpdateEnd', mediaSource.readyState); //ended  
+      });
+    });
   }
 
+  socket.onopen = () => {
+    socket.onmessage = (event) => {
+      if (typeof event.data === 'string') {
+        console.log('receive string message', event.data);
+      } else {
+        console.log('receive blob message', event.data);
+        if (this.mode === 0) {
+          // Test data from server is valid buffer
+          var image: HTMLImageElement
+            image = document.querySelector("#image");
+            image.src = window.URL.createObjectURL(event.data);
+        } else if (this.mode === 1) {
+          const videoUrl = window.URL.createObjectURL(event.data);
+          get(videoUrl, (buffer) => {
+            sourceBuffer.appendBuffer(buffer);
+          });}
+      }
+    }
+  }
+
+
+  function get(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'arraybuffer';
+    xhr.send();
+    xhr.onload = () => {
+      callback(xhr.response);
+    };
+  }
+
+
 }
 
 }
+
+
+
+
 
 
 

@@ -5,6 +5,8 @@ import { Category, Query, ALL_CATEGORIES } from '../shared/category';
 import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
+import { HttpClient, HttpEventType} from '@angular/common/http';
+
 import { Video, CREATE_VIDEO } from '../shared/video';
 
 @Component({
@@ -14,22 +16,27 @@ import { Video, CREATE_VIDEO } from '../shared/video';
 })
 export class UploadComponent implements OnInit {
 
-  title = "Video de Prueba  ";
+  uploadedFiles: Array<File>;
   category = "Other";
-  angForm: FormGroup;
   form: FormGroup;
   error: string;
   userId: number = 1;
-  description: string = "Nada Especial"
-  //video =  new Video;
   uploadResponse = { status: '', message: '', filePath: '' };
   categories$: Observable<Category[]>;
+  uploadForm: FormGroup;
+  selectedFile: File;
+  user_id: number 
+  category_id: string;
+  description: string;
+  destination: string;
+  title: string
+
 
   categories = ['Really Smart', 'Super Flexible',
             'Super Hot', 'Weather Changer'];
 
-  constructor(private formBuilder: FormBuilder, private uploadService: UploadService,private fb: FormBuilder, private apollo: Apollo) {
-    this.createForm();
+  constructor(private formBuilder: FormBuilder, private uploadService: UploadService,private fb: FormBuilder, private apollo: Apollo,private http: HttpClient) {
+
   }
 
 
@@ -40,46 +47,60 @@ export class UploadComponent implements OnInit {
     });
   }
   
-  onFileChange(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.form.get('video').setValue(file);
-    }
-  }
 
-  onSubmit() {
-    const formData = new FormData();
-    formData.append('file', this.form.get('video').value);
 
-    this.uploadService.upload(formData, this.userId).subscribe(
-      (res) => this.uploadResponse = res,
-      (err) => this.error = err
-    );
-      
+  OnFileSelected(event){
+
+    this.selectedFile = <File> event.target.files[0]
+    console.log(event)
 
   }
 
-  createForm() {
-   this.angForm = this.fb.group({
-      title: ['', Validators.required ],
-      category: ['', Validators.required ]
+  OnUpload(){
+    const fd = new FormData();
+    fd.append('video',this.selectedFile,this.selectedFile.name);
 
-   });
+    //let headers = new Headers();
+    /** No need to include Content-Type in Angular 4 */
+    //headers.append('Content-Type', 'multipart/form-data');
+    //headers.append('Accept', 'image/png')
+
+    this.http.post('http://localhost:3002/upload',fd,{
+      reportProgress: true,
+      observe: 'events'
+    }).
+    subscribe(event => {
+      if(event.type === HttpEventType.UploadProgress){
+        console.log("Upload progress: " +  Math.round(event.loaded / event.total * 100 ) + '%');
+      }else if (event.type === HttpEventType.Response){
+        console.log(event)
+      }
+      console.log(event)
+    })
   }
-
-  createVideo(video) {
-    this.apollo.mutate<Query>({
+  
+  newVideo() {
+    this.apollo.mutate({
       mutation: CREATE_VIDEO,
       variables: {
-        video
+        user_id: this.user_id,
+        category_id: this.category_id,
+        title: this.title,
+        destination: this.destination,
+        description: this.description
       }
-    }).subscribe((response) => {
-  
+    }).subscribe(({ data }) => {
+      console.log('got data', data);
+    },(error) => {
+      console.log('there was an error sending the query', error);
     });
   }
-
-
 }
+
+
+
+
+
 
 
 

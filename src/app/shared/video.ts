@@ -55,14 +55,22 @@ query videosByName($name: String!){
 }
 `
 
-export const CREATE_VIDEO = gql`
-
-mutation createVideo($video: Video!) {
-  createVideo(video: $video) {
-    id
-    title
-    description
+export const CREATE_VIDEO = gql `
+mutation createVideo($user_id: Int!,$category_id: String,$title: String!,$destination: String!,$description: String!) {
+    createVideo(video: {
+      user_id: $user_id
+      category_id: $category_id
+      title: $title
+      destination: $destination
+      description: $description
+    }){
+        id
+    }
   }
-}
-`;
+`
+
+
+
+
+
 

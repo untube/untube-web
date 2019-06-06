@@ -3,7 +3,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Video, VIDEO_BY_ID} from '../shared/video'
 import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
-import {Query, VIDEO_BY_CATEGORY} from '../shared/category'
+import {Query, VIDEO_BY_CATEGORY, Category} from '../shared/category'
 import { map } from 'rxjs/operators';
 
 
@@ -16,7 +16,8 @@ import { map } from 'rxjs/operators';
 
 export class CategoryvideolistComponent implements OnInit {
 
-  public categoryId;
+  categoryId;
+  cateogory: Category;
   videos$: Observable<Video[]>
 
   constructor(private route: ActivatedRoute, private apollo: Apollo, private router: Router) { }
@@ -26,6 +27,7 @@ export class CategoryvideolistComponent implements OnInit {
       this.route.paramMap.subscribe((params: ParamMap) => {
       let id = params.get('id');
       this.categoryId = id;
+
       });
 
       this.videos$ = this.apollo.watchQuery<Query>({

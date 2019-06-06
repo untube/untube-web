@@ -7,18 +7,20 @@ import { map } from 'rxjs/operators';
 })
 export class UploadService {
 
-  SERVER_URL: string = "http://localhost:3000";
+  SERVER_URL: string = "http://localhost:3002";
   constructor(private httpClient: HttpClient) { }
 
 
 
   public upload(data, userId) {
-    let uploadURL = `${this.SERVER_URL}/auth/${userId}/avatar`;
-  
+    //let uploadURL = `${this.SERVER_URL}/auth/${userId}/avatar`;
+    //let uploadURL = "http://34.73.94.91:3001/subir"
+    let uploadURL = `${this.SERVER_URL}/upload`
+
     return this.httpClient.post<any>(uploadURL, data, {
       reportProgress: true,
       observe: 'events'
-    }).pipe(map((event) => {
+      }).pipe(map((event) => {
   
       switch (event.type) {
   
