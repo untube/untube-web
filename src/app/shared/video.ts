@@ -56,7 +56,8 @@ query videosByName($name: String!){
 `
 
 export const CREATE_VIDEO = gql `
-mutation createVideo($user_id: Int!,$category_id: String,$title: String!,$destination: String!,$description: String!) {
+mutation createVideo($user_id: Int!,$category_id: String!,$title: String!,$destination: String!,
+  $description: String!) {
     createVideo(video: {
       user_id: $user_id
       category_id: $category_id
@@ -65,6 +66,7 @@ mutation createVideo($user_id: Int!,$category_id: String,$title: String!,$destin
       description: $description
     }){
         id
+        title
     }
   }
 `

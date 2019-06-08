@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpEventType} from '@angular/common/http';
 
 import { Video, CREATE_VIDEO } from '../shared/video';
+import { headersToString } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-upload',
@@ -58,14 +59,14 @@ export class UploadComponent implements OnInit {
 
   OnUpload(){
     const fd = new FormData();
-    fd.append('video',this.selectedFile,this.selectedFile.name);
+    fd.append('file',this.selectedFile,this.selectedFile.name);
 
     //let headers = new Headers();
     /** No need to include Content-Type in Angular 4 */
     //headers.append('Content-Type', 'multipart/form-data');
     //headers.append('Accept', 'image/png')
 
-    this.http.post('http://localhost:3002/upload',fd,{
+    this.http.post('http://localhost:3000/upload',fd,{
       reportProgress: true,
       observe: 'events'
     }).

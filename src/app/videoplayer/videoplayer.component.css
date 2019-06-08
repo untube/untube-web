@@ -1,5 +1,4 @@
-
-.videoplayer {
+videoplayer {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: black;
     position: relative;
@@ -182,3 +181,4 @@ div {
   margin-left:-3rem;
   margin-right:1rem;
 }
+

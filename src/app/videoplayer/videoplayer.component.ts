@@ -6,6 +6,7 @@ import { Apollo } from 'apollo-angular';
 import { Query, Video, VIDEO_BY_ID } from '../shared/video';
 import { WebsocketService } from '../websocket.service';
 import { Socket } from 'dgram';
+import { queue } from 'rxjs/internal/scheduler/queue';
 
 @Component({  
   selector: 'app-videoplayer',
@@ -22,6 +23,7 @@ export class VideoplayerComponent implements OnInit {
   blob;
   blobURL;
   baseURL = "data:video/mp4;base64,";
+  queue = [];
 
   constructor(private route: ActivatedRoute,private apollo: Apollo , private wss: WebsocketService) { 
 
@@ -55,7 +57,7 @@ export class VideoplayerComponent implements OnInit {
 
   }) */
 
-  let socket = new WebSocket("ws://localhost:3002/ws");
+  let socket = new WebSocket("ws://localhost:3000/ws");
 
 
   /*
@@ -103,7 +105,7 @@ export class VideoplayerComponent implements OnInit {
     socket.onmessage = (event) => {
       if (typeof event.data === 'string') {
         console.log('receive string message', event.data);
-      } else {
+      } else if(event.data instanceof Blob){
         console.log('receive blob message', event.data);
         if (this.mode === 0) {
           // Test data from server is valid buffer
@@ -119,13 +121,23 @@ export class VideoplayerComponent implements OnInit {
     }
   }
 
+  sourceBuffer.addEventListener('updateend',function(){
+
+    if(this.queue.lenght){
+
+      sourceBuffer.appendBuffer(this.queue.shift());
+
+    }
+
+  },false)
+
 
   function get(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('get', url, true);
-    xhr.responseType = 'arraybuffer';
+    xhr.responseType = 'blob';
     xhr.send();
-    xhr.onload = () => {
+    xhr.onreadystatechange = () => {
       callback(xhr.response);
     };
   }
