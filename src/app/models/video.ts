@@ -13,6 +13,10 @@ export class Video {
     originalname: string;
     encoding: string;
     filename: string;
+
+  public constructor(init?: Partial<Video >) {
+      Object.assign(this, init);
+  }
 }
 
 export type Query = {

@@ -1,0 +1,41 @@
+<form [formGroup] = "service.form" class ="normal-form">
+  <mat-grid-list cols = "2" rowHeight = "300px">
+    <mat-grid-tile>
+      <div class = "controles-container">
+        <input type = "hidden" formControlName = "$id">
+        <mat-form-field>
+          <input formControlName = "title" matInput placeholder="Titulo*"> 
+          <mat-error>Este Campo es Obligatorio</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea formControlName = "description" matInput placeholder="Descripción*"></textarea>
+            <mat-error *ngIf= "service.form.controls['description'].errors?.required">Campo Obligatorio</mat-error>
+            <mat-error *ngIf= "service.form.controls['description'].errors?.minlenght">Minimo 10 caracteres</mat-error>                
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class = "controles-container">
+        <mat-form-field>
+          <mat-select formControl = "category" placholder = "Categoria*" matInput [formControl]="categoryControl" required>
+            <ng-container *ngFor = "let category of categories">
+              <mat-option value = "{{category.id}}">{{category.value}}</mat-option>
+            </ng-container>
+          </mat-select>
+          <mat-error>Elegir Categoria</mat-error>        
+        </mat-form-field>
+        <div>
+            <input type = "file"  (click) = "onFileSelected($event)" placeholder="Seleccionar Archivo">
+        </div>
+        <div class = "button-row">
+          <button mat-raised-button color = "primary" type = "submit" [disabled] = "service.form.invalid">Aceptar</button>
+          <button mat-raised-button color = "warn" (click) = "onClear()">Cancelar</button>
+
+        </div>
+      </div>
+      
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+
+

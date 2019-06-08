@@ -5,9 +5,11 @@ import { Category, Query, ALL_CATEGORIES } from '../../models/category';
 import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog'
 import { HttpClient, HttpEventType} from '@angular/common/http';
 
 import { Video, CREATE_VIDEO } from '../../models/video';
+import { VideofileComponent } from './videofile/videofile.component';
 
 @Component({
   selector: 'app-upload',
@@ -51,7 +53,8 @@ export class UploadComponent implements OnInit {
   categories = ['Really Smart', 'Super Flexible',
             'Super Hot', 'Weather Changer'];
 
-  constructor(private formBuilder: FormBuilder, private uploadService: UploadService,private fb: FormBuilder, private apollo: Apollo,private http: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private uploadService: UploadService,private fb: FormBuilder, 
+    private apollo: Apollo,private http: HttpClient, private dialog: MatDialog) {
 
   }
 
@@ -77,36 +80,6 @@ export class UploadComponent implements OnInit {
   }
 
 
-  OnFileSelected(event){
-
-    this.selectedFile = <File> event.target.files[0]
-    console.log(event)
-
-  }
-
- 
-  OnUpload(){
-    const fd = new FormData();
-    fd.append('file',this.selectedFile,this.selectedFile.name);
-
-    //let headers = new Headers();
-    /** No need to include Content-Type in Angular 4 */
-    //headers.append('Content-Type', 'multipart/form-data');
-    //headers.append('Accept', 'image/png')
-
-    this.http.post('http://localhost:3000/upload',fd,{
-      reportProgress: true,
-      observe: 'events'
-    }).
-    subscribe(event => {
-      if(event.type === HttpEventType.UploadProgress){
-        console.log("Upload progress: " +  Math.round(event.loaded / event.total * 100 ) + '%');
-      }else if (event.type === HttpEventType.Response){
-        console.log(event)
-      }
-      console.log(event)
-    })
-  }
   
   newVideo() {
     this.apollo.mutate({
@@ -125,8 +98,16 @@ export class UploadComponent implements OnInit {
     });
   }
 
-  OnDelete(){
+  onDelete(){
     console.log("Delete File")
+  }
+
+  onCreate(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(VideofileComponent,dialogConfig)
   }
 
 }

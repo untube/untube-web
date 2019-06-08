@@ -15,11 +15,8 @@
 <div class="container">
         <div class="container">
           <div fxLayout="column" fxLayoutGap="5px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
-              <div>
-                <input type = "file"  (click) = "OnUpload()">
-              </div>
               <div class="blocks">
-                    <button button="submit" mat-raised-button color="primary">
+                    <button button="submit" mat-raised-button color="primary" (click) = "onCreate()">
                         <mat-icon>cloud_upload</mat-icon> Subir
                     </button>
              </div>

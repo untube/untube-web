@@ -8,7 +8,7 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { VideolistComponent } from './components/videolist/videolist.component';
 import { VideoplayerComponent } from './components/videoplayer/videoplayer.component';
-import { MatInputModule, MatSelectModule, MatIconModule,MatToolbarModule, MatTabsModule, MatSidenavModule } from '@angular/material';
+import { MatInputModule, MatSelectModule, MatIconModule,MatToolbarModule, MatTabsModule, MatSidenavModule,MatFormFieldModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,7 @@ import { MatVideoModule } from 'mat-video';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CategoryvideolistComponent } from './components/categoryvideolist/categoryvideolist.component';
 import {WebsocketService} from './services/websocket.service';
+import {VideouploadService} from './services/videoupload.service'
 import { SearchComponent } from './components/search/search.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchlistComponent } from './components/searchlist/searchlist.component';
@@ -29,8 +30,9 @@ import { CommentariesComponent } from './components/commentaries/commentaries.co
 import { UploadComponent } from './components/upload/upload.component';
 import {MatCardModule,MatTableModule,} from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator'; 
-
-
+import {MatDialogModule} from '@angular/material/dialog'
+import {VideofileComponent} from './components/upload/videofile/videofile.component'
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     SignInComponent,
     SignUpComponent,
     UploadComponent,
+    VideofileComponent,
     CommentariesComponent
   ],
   imports: [
@@ -70,12 +73,15 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FlexLayoutModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatFormFieldModule
   ],
   exports: [
 
   ],
-  providers: [WebsocketService],
-  bootstrap: [AppComponent]
+  providers: [WebsocketService, VideouploadService],
+  bootstrap: [AppComponent],
+  entryComponents: [VideofileComponent]
 })
 export class AppModule { }
