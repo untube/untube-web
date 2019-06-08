@@ -10,7 +10,7 @@ export class AuthenticationService {
 
   constructor(private apollo: Apollo) { }
 
-  sign_in(user: User) {
+  sign_up(user: User) {
     return this.apollo.mutate({
       mutation: SIGN_UP,
       variables: {
@@ -19,6 +19,16 @@ export class AuthenticationService {
         email: user.email,
         password: user.password,
         password_confirmation: user.password_confirmation
+      }
+    });
+  }
+  
+  sign_in(user: User) {
+    return this.apollo.mutate({
+      mutation: SIGN_IN,
+      variables: {
+        email: user.email,
+        password: user.password
       }
     });
   }

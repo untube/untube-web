@@ -12,15 +12,32 @@ export class User {
 }
 
 export const SIGN_UP = gql`
-  mutation createUser ($name: String, $nickname: String, $email: String, $password: String, $password_confirmation: String){
+  mutation createUser ($name: String, $nickname: String, $email: String!, $password: String!, $password_confirmation: String!){
     createUser(user: {
-        name: $name,
-        nickname: $nickname,
-        email: $email,
-        password: $password,
+        name: $name
+        nickname: $nickname
+        email: $email
+        password: $password
         password_confirmation: $password_confirmation
     }) {
-        data
+        status
+        data {
+          id
+        }
+    }
+  }
+`;
+
+
+export const SIGN_IN = gql`
+  mutation loginUser ($email: String!, $password: String!){
+    loginUser(user: {
+        email: $email
+        password: $password
+    }) {
+        data {
+          id
+        }
     }
   }
 `;
