@@ -23,7 +23,7 @@
         <mat-form-field>
           <mat-select formControl = "category" placholder = "Categoria*" matInput [formControl]="categoryControl" required>
             <ng-container *ngFor = "let category of categories$ | async">
-              <mat-option value = "{{category.category_id}}">{{category.category}}</mat-option>
+              <mat-option value = "{{category.id}}"  (click) = "onSelect(category)">{{category.category}}</mat-option>
             </ng-container>
           </mat-select>
           <mat-error>Elegir Categoria</mat-error>        

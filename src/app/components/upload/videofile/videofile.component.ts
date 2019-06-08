@@ -21,7 +21,8 @@ export class VideofileComponent implements OnInit {
   
   selectedFile: File;
   categories$: Observable<Category[]>;
-  user_id: number;
+  user_id: number; 
+  category_id : string
 
   constructor(private service: VideouploadService,private http: HttpClient
     ,public dialogRef: MatDialogRef<VideofileComponent>,private apollo: Apollo,private notification: NotificationService,private route: ActivatedRoute,
@@ -95,7 +96,7 @@ export class VideofileComponent implements OnInit {
       video.user_id = this.user_id
       form = this.service.form.value
       video.title = form.title
-      video.category_id = form.category
+      video.category_id = this.category_id
       video.description = form.description
       video.destination = "/movie"
       console.log(video)
@@ -105,6 +106,12 @@ export class VideofileComponent implements OnInit {
       this.service.initilizeFormGroup
       this.onClose();
     }
+  }
+
+  onSelect(category){
+
+    this.category_id = category.id
+
   }
 
 

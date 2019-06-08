@@ -24,6 +24,7 @@ export type Query = {
     videoById: Video;
     videosByName: Video[];
     createdVideo: Video;
+    videosByUser: Video[];
 }
 
 export const ALL_VIDEOS = gql ` 
@@ -51,6 +52,17 @@ query videoById($id: String!){
 export const VIDEOS_BY_NAME = gql ` 
 query videosByName($name: String!){
   videosByName(name: $name){
+    id 
+    title 
+    description
+    destination
+  }
+}
+`
+
+export const VIDEOS_BY_USER = gql ` 
+query videosByUser($id: Int!){
+  videosByUser(id: $id){
     id 
     title 
     description

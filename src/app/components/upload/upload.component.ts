@@ -5,7 +5,7 @@ import { Apollo } from 'apollo-angular';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog'
 import { HttpClient, HttpEventType} from '@angular/common/http';
 import {MAT_DIALOG_DATA} from '@angular/material'
-import { Video, CREATE_VIDEO, DELETE_VIDEO, Query, ALL_VIDEOS } from '../../models/video';
+import { Video, CREATE_VIDEO, DELETE_VIDEO, Query, ALL_VIDEOS, VIDEOS_BY_USER } from '../../models/video';
 import { VideofileComponent } from './videofile/videofile.component';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Observable } from 'rxjs';
@@ -43,14 +43,29 @@ export class UploadComponent implements OnInit {
 
 
   ngOnInit() {
+
+
     this.route.paramMap.subscribe((params: ParamMap) => {
+      let id = params.get('id');
+      this.user_id = parseInt(id);
+      console.log(this.user_id)
+      this.videos$ = this.apollo.watchQuery<Query>({ query: VIDEOS_BY_USER,variables: {id: this.user_id}
+      }).valueChanges.pipe(map(result => result.data.videosByName));
+  
+      console.log(this.videos$)
+  
+  
+      });
+
+
+    /*this.route.paramMap.subscribe((params: ParamMap) => {
       let id = params.get('id');
       this.user_id = parseInt(id);
 
       console.log(this.user_id)
       });
     this.videos$ = this.apollo.watchQuery<Query>({query: ALL_VIDEOS}).valueChanges.pipe(map(result => result.data.allVideos));
-    this.getData({pageIndex: this.page, pageSize: this.size});
+    this.getData({pageIndex: this.page, pageSize: this.size});*/
   }
 
   getData(obj) {
