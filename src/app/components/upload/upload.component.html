@@ -1,14 +1,23 @@
 <div fxFlex>
         <mat-grid-list cols="4" rowHeight="200px">
-          <mat-grid-tile *ngFor="let food of foods1">
+          <mat-grid-tile *ngFor="let video of videos | async">
             <mat-grid-tile-header>
-                    <h1>{{food.name}}</h1>
+                    <h1>{{video.title}}</h1>
             </mat-grid-tile-header>
-            <img height="200px"  src= "../assets/video.png" alt= {{food.name}}>
-                <button button="submit" mat-raised-button color="primary" (change) = "OnDelete(food)">
+            <img height="200px"  src= "../assets/video.png" alt= {{video.title}}>
+                <button  mat-raised-button color="primary" (click) = "onDelete(video.id)">
                     <mat-icon>delete</mat-icon>
                 </button>            
           </mat-grid-tile>
+          <div class = "footer">
+            <mat-paginator [length]="videos.length"
+                [pageSize]="size"
+                [pageIndex]="page"
+                [pageSizeOptions]="[4, 8, 12]"
+                (page)="getData($event)">
+            </mat-paginator>
+        </div>
+        
         </mat-grid-list>
 
 
@@ -25,11 +34,3 @@
     </div>
 </div>
 
-<div class = "footer">
-    <mat-paginator [length]="foods.length"
-        [pageSize]="size"
-        [pageIndex]="page"
-        [pageSizeOptions]="[4, 8, 12]"
-        (page)="getData($event)">
-    </mat-paginator>
-</div>

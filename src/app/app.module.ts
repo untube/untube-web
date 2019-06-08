@@ -8,7 +8,7 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { VideolistComponent } from './components/videolist/videolist.component';
 import { VideoplayerComponent } from './components/videoplayer/videoplayer.component';
-import { MatInputModule, MatSelectModule, MatIconModule,MatToolbarModule, MatTabsModule, MatSidenavModule,MatFormFieldModule } from '@angular/material';
+import { MatInputModule, MatSelectModule, MatIconModule,MatToolbarModule, MatTabsModule, MatSidenavModule,MatFormFieldModule,MatSnackBarModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -75,7 +75,8 @@ import {VideofileComponent} from './components/upload/videofile/videofile.compon
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   exports: [
 

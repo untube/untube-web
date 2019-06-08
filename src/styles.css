@@ -58,3 +58,13 @@ select:invalid {
   .button-row button{
     margin: 5px;
   }
+
+  snack-bar-container.succes{
+    background-color: #5cb65c;
+    color: #fff;
+  }
+
+  snack-bar-container.notification simple-snack-bar{
+    font-size: 18px !important;
+    font-weight: bold;
+  }

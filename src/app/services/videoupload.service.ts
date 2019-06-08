@@ -18,7 +18,7 @@ export class VideouploadService {
       $id: null,
       title: ' ',
       description: ' ',
-      category: 0,
+      category: ' ',
     })
   }
 

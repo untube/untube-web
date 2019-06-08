@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'categories/:id', component: CategoryvideolistComponent},
   {path: 'search/:name', component: SearchlistComponent},
-  {path: 'profile/:id/upload-video', component: UploadComponent},
+  {path: 'profile/:id/uploads', component: UploadComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full' }
 
 

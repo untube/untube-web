@@ -75,6 +75,13 @@ mutation createVideo($user_id: Int!,$category_id: String!,$title: String!,$desti
   }
 `
 
+export const DELETE_VIDEO = gql `
+mutation deleteVideo($id: String!) {
+    deleteVideo(id: $id ){
+      ok
+    }
+  }
+`
 
 
 
