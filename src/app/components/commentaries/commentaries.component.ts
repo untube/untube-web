@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Query, Commentary, COMMENTARIES_BY_VIDEO, CREATE_COMMENTARY } from '../shared/commentary';
+import { Query, Commentary, COMMENTARIES_BY_VIDEO, CREATE_COMMENTARY } from '../../models/commentary';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';

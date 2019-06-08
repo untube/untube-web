@@ -3,8 +3,8 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
-import { Query, Video, VIDEO_BY_ID } from '../shared/video';
-import { WebsocketService } from '../websocket.service';
+import { Query, Video, VIDEO_BY_ID } from '../../models/video';
+import { WebsocketService } from '../../services/websocket.service';
 import { Socket } from 'dgram';
 import { queue } from 'rxjs/internal/scheduler/queue';
 

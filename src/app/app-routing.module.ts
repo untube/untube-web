@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { VideolistComponent } from './videolist/videolist.component';
-import { VideoplayerComponent } from './videoplayer/videoplayer.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { CategoryvideolistComponent } from './categoryvideolist/categoryvideolist.component';
-import { SearchlistComponent} from './searchlist/searchlist.component';
-import { SignInComponent} from './sign-in/sign-in.component';
-import { SignUpComponent} from './sign-up/sign-up.component';
-import { UploadComponent } from './upload/upload.component';
-import { CommentariesComponent } from './commentaries/commentaries.component';
+import { VideolistComponent } from './components/videolist/videolist.component';
+import { VideoplayerComponent } from './components/videoplayer/videoplayer.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { CategoryvideolistComponent } from './components/categoryvideolist/categoryvideolist.component';
+import { SearchlistComponent} from './components/searchlist/searchlist.component';
+import { SignInComponent} from './components/sign-in/sign-in.component';
+import { SignUpComponent} from './components/sign-up/sign-up.component';
+import { UploadComponent } from './components/upload/upload.component';
+import { CommentariesComponent } from './components/commentaries/commentaries.component';
 
 const routes: Routes = [
 

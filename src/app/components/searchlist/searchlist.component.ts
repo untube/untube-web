@@ -2,7 +2,7 @@ import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/cor
 import { ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { Video,Query, VIDEOS_BY_NAME } from '../shared/video';
+import { Video,Query, VIDEOS_BY_NAME } from '../../models/video';
 import {map} from 'rxjs/operators';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 

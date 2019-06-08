@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Video, VIDEO_BY_ID} from '../shared/video'
+import {Video, VIDEO_BY_ID} from '../../models/video'
 import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
-import {Query, VIDEO_BY_CATEGORY, Category} from '../shared/category'
+import {Query, VIDEO_BY_CATEGORY, Category} from '../../models/category'
 import { map } from 'rxjs/operators';
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Query, Category, ALL_CATEGORIES } from '../shared/category';
+import { Query, Category, ALL_CATEGORIES } from '../../models/category';
 import {Router} from '@angular/router';
 
 @Component({

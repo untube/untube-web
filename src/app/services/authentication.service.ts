@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User, SIGN_UP } from './shared/user';
+import { User, SIGN_UP, SIGN_IN } from '../models/user';
 import { Apollo } from 'apollo-angular';
 
 @Injectable({

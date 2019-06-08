@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
-import { UploadService } from  '../upload.service';
-import { Category, Query, ALL_CATEGORIES } from '../shared/category';
+import { UploadService } from  '../../services/upload.service';
+import { Category, Query, ALL_CATEGORIES } from '../../models/category';
 import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpEventType} from '@angular/common/http';
 
-import { Video, CREATE_VIDEO } from '../shared/video';
+import { Video, CREATE_VIDEO } from '../../models/video';
 import { headersToString } from 'selenium-webdriver/http';
 
 @Component({
