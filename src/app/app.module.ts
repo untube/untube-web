@@ -27,6 +27,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { CommentariesComponent } from './components/commentaries/commentaries.component';
 import { UploadComponent } from './components/upload/upload.component';
+import {MatCardModule,MatTableModule,} from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator'; 
 
 
 @NgModule({
@@ -65,11 +67,13 @@ import { UploadComponent } from './components/upload/upload.component';
     MatAutocompleteModule,
     MatGridListModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   exports: [
-    MatTabsModule,
-    MatSidenavModule
+
   ],
   providers: [WebsocketService],
   bootstrap: [AppComponent]

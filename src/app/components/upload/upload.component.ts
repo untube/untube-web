@@ -8,7 +8,6 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpEventType} from '@angular/common/http';
 
 import { Video, CREATE_VIDEO } from '../../models/video';
-import { headersToString } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-upload',
@@ -31,7 +30,23 @@ export class UploadComponent implements OnInit {
   description: string;
   destination: string;
   title: string
+   
+  page = 0;
+  size = 4;
 
+
+  
+  foods1 = [];
+
+
+
+  foods: Food[] = [
+    {name: 'Yogurt', calories: 159, fat: 6, carbs: 24, protein: 4},
+    {name: 'Sandwich', calories: 237, fat: 9, carbs: 37, protein: 4},
+    {name: 'Eclairs', calories: 262, fat: 16, carbs: 24, protein: 6},
+    {name: 'Cupcakes', calories: 305, fat: 4, carbs: 67, protein: 4},
+    {name: 'Gingerbreads', calories: 356, fat: 16, carbs: 49, protein: 4},
+ ];
 
   categories = ['Really Smart', 'Super Flexible',
             'Super Hot', 'Weather Changer'];
@@ -46,8 +61,20 @@ export class UploadComponent implements OnInit {
     this.form = this.formBuilder.group({
       video: ['']
     });
+    this.getData({pageIndex: this.page, pageSize: this.size});
+
   }
-  
+
+  getData(obj) {
+    let index=0,
+        startingIndex=obj.pageIndex * obj.pageSize,
+        endingIndex=startingIndex + obj.pageSize;
+
+    this.foods1 = this.foods.filter(() => {
+      index++;
+      return (index > startingIndex && index <= endingIndex) ? true : false;
+    });
+  }
 
 
   OnFileSelected(event){
@@ -57,6 +84,7 @@ export class UploadComponent implements OnInit {
 
   }
 
+ 
   OnUpload(){
     const fd = new FormData();
     fd.append('file',this.selectedFile,this.selectedFile.name);
@@ -96,8 +124,20 @@ export class UploadComponent implements OnInit {
       console.log('there was an error sending the query', error);
     });
   }
+
+  OnDelete(){
+    console.log("Delete File")
+  }
+
 }
 
+class  Food {
+   calories: number;
+   carbs: number;
+   fat: number;
+   name: string;
+   protein: number;
+}
 
 
 

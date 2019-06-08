@@ -1,6 +1,38 @@
-<h1>Subir Archivo</h1>
-<input type ="file" (change) = "OnFileSelected($event)">
-<button mat-button class ="button" (click) = "OnUpload()">Subir</button>
+<div fxFlex>
+        <mat-grid-list cols="4" rowHeight="200px">
+          <mat-grid-tile *ngFor="let food of foods1">
+            <mat-grid-tile-header>
+                    <h1>{{food.name}}</h1>
+            </mat-grid-tile-header>
+            <img height="200px"  src= "../assets/video.png" alt= {{food.name}}>
+                <button button="submit" mat-raised-button color="primary" (change) = "OnDelete(food)">
+                    <mat-icon>delete</mat-icon>
+                </button>            
+          </mat-grid-tile>
+        </mat-grid-list>
 
 
-<button (click)= "newVideo()">Crear Video</button>
+<div class="container">
+        <div class="container">
+          <div fxLayout="column" fxLayoutGap="5px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
+              <div>
+                <input type = "file"  (click) = "OnUpload()">
+              </div>
+              <div class="blocks">
+                    <button button="submit" mat-raised-button color="primary">
+                        <mat-icon>cloud_upload</mat-icon> Subir
+                    </button>
+             </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class = "footer">
+    <mat-paginator [length]="foods.length"
+        [pageSize]="size"
+        [pageIndex]="page"
+        [pageSizeOptions]="[4, 8, 12]"
+        (page)="getData($event)">
+    </mat-paginator>
+</div>

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Query, Video,ALL_VIDEOS } from '../../models/video';
 import {Router} from '@angular/router';
-import { refreshDescendantViews } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-videolist',
