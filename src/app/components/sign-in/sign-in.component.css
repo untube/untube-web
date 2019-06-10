@@ -1,0 +1,19 @@
+#login {
+    background: linear-gradient(rgba(0, 0, 0, 0.322), rgba(0, 0, 0, 0.322)), url("/assets/login-cover.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#login > div > form {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.title{
+    font-family: Amaranth;
+    font-size: 5rem;
+    color: rgb(255, 225, 0)
+}
+.description {
+    font-family: Courgette;
+    color: white;
+}

@@ -1,0 +1,57 @@
+
+<div class="container" fxLayout="column" fxLayoutGap="5px">
+
+<div fxFlex>
+  <div>
+    <h3> Nuevo Video</h3>
+    <hr>
+  </div>
+</div>
+<div class = "controles-container">
+  <div class = "button-row">
+    <input type = "file" accept = ".mp4"  style = "display: none" (click) = "onFileSelected($event)" placeholder="Seleccionar Archivo" #fileInput>
+    <button mat-raised-button color = "primary" (click) = "fileInput.click()" >Elegir Archivo</button>
+    <button mat-raised-button color = "primary" (click) = onUpload()> Subir </button>
+  </div> 
+  <div>
+      <mat-progress-bar [mode]="determinate" [value]="uploadValue">
+      </mat-progress-bar>
+  </div>
+</div>
+
+<div class>
+<form [formGroup] = "service.form" class ="normal-form"  (submit) = "onSubmit()">
+      <div class = "controles-container">
+        <mat-form-field>
+          <input matInput formControlName = "title" placeholder="Titulo*"> 
+          <mat-error>Este Campo es Obligatorio</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea formControlName = "description" matInput placeholder="Descripción*"></textarea>
+            <mat-error *ngIf= "service.form.controls['description'].errors?.required">Campo Obligatorio</mat-error>
+            <mat-error *ngIf= "service.form.controls['description'].errors?.minlenght">Minimo 10 caracteres</mat-error>                
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControl = "category" placholder = "Categoria*" [disabled] = "service.form.invalid">
+            <mat-option>Ninguno</mat-option> 
+            <ng-container *ngFor = "let category of categories$ | async">
+              <mat-option value = "{{category.id}}"  (click) = "onSelect(category)">{{category.category}}</mat-option>
+            </ng-container>
+          </mat-select>
+          <mat-error>Elegir Categoria</mat-error>        
+        </mat-form-field>
+        <div class = "button-row">
+          <button mat-raised-button color = "primary" type = "submit" [disabled] = "service.form.invalid">Aceptar</button>
+          <button mat-raised-button color = "warn" (click) = "onClear()">Cancelar</button>
+
+        </div>
+      </div>      
+</form>
+</div>
+</div>
+
+
+
+
+  
+

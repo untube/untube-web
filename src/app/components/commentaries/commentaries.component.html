@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-end">
+    <div class="col-2">
+      <img src="/assets/default-avatar.png" alt="default-avatar" class="rounded-circle d-block mx-auto" width="75%">
+    </div>
+    <div class="col-10">
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <h6 class="username">{{username}}:</h6>
+        <div class="form-group d-block mr-auto w-50">
+          <label for="subject"></label>
+          <input type="text" name="subject" id="subject" class="form-control" placeholder="Asunto" formControlName="subject">       
+        </div>
+        <div class="input-group row justify-content-center align-items-center border rounded">
+          <textarea class="form-control custom-control border-0 mb-2" rows="2" style="resize:none" placeholder="¿Qué estás pensando?" formControlName="description"></textarea>     
+          <button type="submit" class="input-group-addon btn btn-secondary rounded-circle mx-2" [disabled]="!commentForm.valid">
+            <i class="fa fa-paper-plane fa-lg my-2" aria-hidden="true"></i>
+          </button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  

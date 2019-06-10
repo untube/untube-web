@@ -1,0 +1,22 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px" id = "category">
+
+  <div fxFlex>
+    <div>
+      <h3>Videos</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <mat-grid-list cols="3" rowHeight="200px" [gutterSize]="'20px'">
+      <mat-grid-tile *ngFor="let video of videos$ | async" (click) = "onSelect (video)">
+        <img height="200px"  src= "../assets/video.png" alt= {{video.title}}>
+        <mat-grid-tile-footer>
+          <h1>{{video.title | uppercase}}</h1>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+</div>
+
