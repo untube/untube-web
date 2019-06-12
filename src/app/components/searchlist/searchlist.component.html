@@ -1,16 +1,10 @@
-<div class="container"
-     fxLayout="column"
-     fxLayoutGap="10px">
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+    <header>
+        <h3>VIDEOS</h3>
+    </header>
 
   <div fxFlex>
-    <div>
-      <h3>Videos</h3>
-      <hr>
-    </div>
-  </div>
-
-  <div fxFlex>
-    <mat-grid-list cols="3" rowHeight="200px" [gutterSize]="'20px'">
+    <mat-grid-list cols="2" rowHeight="200px" [gutterSize]="'20px'">
       <mat-grid-tile *ngFor="let video of videos$ | async" (click) = "onSelect (video)">
         <img height="200px"  src= "../assets/video.png" alt= {{video.title}}>
         <mat-grid-tile-footer>
@@ -19,7 +13,4 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
-
 </div>
-
-

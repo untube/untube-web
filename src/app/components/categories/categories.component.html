@@ -1,13 +1,12 @@
+<body></body>
 <div id = "category" class="container-fluid h-90">
   <div class="container" fxLayout="column" fxLayoutGap="10px">
-    <div fxFlex class = "header">
-      <div>
-        <h3>Categorias</h3>
-        <hr>
-      </div>
-    </div>
+        
+  <header>
+      <h3>CATEGORIAS</h3>
+  </header>
 
-    <div fxFlex role = "main">
+    <div fxFlex>
       <mat-grid-list cols="2" rowHeight="200px" [gutterSize]="'20px'">
         <mat-grid-tile *ngFor="let category of categories$ | async" (click) = "onSelect (category)">
           <img height="200px"  src= "../assets/{{category.category}}.png" alt= {{category.category}}>

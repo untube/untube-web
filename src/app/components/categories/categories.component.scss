@@ -1,49 +1,26 @@
-/* --- General Pen Styles --- */
-body{
-	font-family: Georgia, serif;
-	color: #333;
-	font-size: 18px;
-	line-height: 24px;
-}
-/*
-h3{
-	line-height: 1.125;
-}*/
-.contained{
-	margin: 0 auto;
-	width: 90%;
-	@media (min-width: 500px){
-		width: 80%;
-	}
-	@media (min-width: 600px){
-		width: 60%;
-	}
-}
-main{
-	padding: 1em 0;
-	position: relative;
-	background: #f5f5f5;
-	box-shadow: 0px -10px 60px rgba(0,0,0,0.25);
-}
+@font-face {
+	font-family: Moderne Sans;
+	src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/moderne_sans.woff2)
+  }
 
-/* --- Important Pen Styles --- */
 
-header{
-	overflow: hidden;
-	//padding-bottom determines the height of the header
-	padding-bottom: 55%;
-	@media (min-width: 600px){
-		padding-bottom: 50%;
-	}
-	@media (min-width: 700px){
-		padding-bottom: 45%;
-	}
-}
-header img{
+
+h3 {
+	font-family: Moderne Sans, sans-serif;
+	text-align: center;
+	font-size: 2.5rem;
 	width: 100%;
-	max-width: none;
-	position: fixed;
-	top: 0%;
-	left: 50%;
-	transform: translateX(-50%);
-}
+	letter-spacing: .5rem;
+  }
+
+  header{
+    padding-bottom: 2.5%;
+    color: #fff;
+    background: linear-gradient(rgba(0, 0, 0, 0.322), rgba(0, 0, 0, 0.322)), url("/assets/category-cover.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 125px;
+    padding-top: 2.5%;
+    margin: 15px;
+
+  }

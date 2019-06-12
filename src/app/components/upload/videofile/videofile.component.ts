@@ -24,6 +24,7 @@ export class VideofileComponent implements OnInit {
   user_id: number; 
   category_id : string
   uploadValue: number;
+  fileText = document.getElementById("custom-text")
 
   constructor(private service: VideouploadService,private http: HttpClient
     /*,public dialogRef: MatDialogRef<VideofileComponent>*/,private apollo: Apollo,private notification: NotificationService,private route: ActivatedRoute,
@@ -41,6 +42,8 @@ export class VideofileComponent implements OnInit {
 
   ngOnInit() {
     console.log("Hola")
+    this.fileText = document.getElementById("custom-text")
+
     this.service.initilizeFormGroup
     this.categories$ = this.apollo.watchQuery<Query>({ query: ALL_CATEGORIES}).valueChanges.pipe(map(result => result.data.allCategories));
     //this.user_id = this.data.user_id
@@ -56,8 +59,15 @@ export class VideofileComponent implements OnInit {
 
   onFileSelected(event){
 
+    console.log("Elegí Archivo")
     this.selectedFile = <File> event.target.files[0]
     console.log(event)
+    if(this.selectedFile){
+      this.fileText.innerHTML = this.selectedFile.name
+    }
+    else{
+      this.fileText.innerHTML = "No se ha seleccionado ningun archivo"
+    }
 
   }
 
@@ -116,7 +126,7 @@ export class VideofileComponent implements OnInit {
       this.newVideo(video)
       this.service.form.reset()
       this.service.initilizeFormGroup
-      //this.onClose();
+     // this.onClose();
     }
     else{
       this.onClear()

@@ -1,5 +1,5 @@
 
-<div class="container" fxLayout="column" fxLayoutGap="5px">
+<div class="container" fxLayout="column" fxLayoutGap="5px"  width =  "25%">
 
 <div fxFlex>
   <div>
@@ -7,19 +7,26 @@
     <hr>
   </div>
 </div>
-<div class = "controles-container">
-  <div class = "button-row">
-    <input type = "file" accept = ".mp4"  style = "display: none" (click) = "onFileSelected($event)" placeholder="Seleccionar Archivo" #fileInput>
-    <button mat-raised-button color = "primary" (click) = "fileInput.click()" >Elegir Archivo</button>
-    <button mat-raised-button color = "primary" (click) = onUpload()> Subir </button>
-  </div> 
-  <div>
-      <mat-progress-bar [mode]="determinate" [value]="uploadValue">
-      </mat-progress-bar>
-  </div>
-</div>
 
-<div class>
+<div class = "tp-container">
+  <mat-card>
+    <div class = "controles-container">
+        <div class = "button-row">
+          <input type = "file" accept = ".mp4"  hidden = "hidden" (click) = "onFileSelected($event)" placeholder="Seleccionar Archivo" #fileInput>
+          <button mat-raised-button color = "primary" (click) = "fileInput.click()"  attachment>
+              <mat-icon>attachment</mat-icon>
+              Elegir Archivo</button>
+          <span id = "custom-text">No se ha seleccionado ningun archivo</span>
+        </div> 
+        <div class = button-row>
+            <button mat-raised-button color = "primary" (click) = onUpload()>
+                <i class="fas fa-upload"></i></button>
+        </div>
+        <div>
+            <mat-progress-bar [mode]="determinate" [value]="uploadValue"></mat-progress-bar>
+        </div>
+      </div>
+      
 <form [formGroup] = "service.form" class ="normal-form"  (submit) = "onSubmit()">
       <div class = "controles-container">
         <mat-form-field>
@@ -41,17 +48,12 @@
           <mat-error>Elegir Categoria</mat-error>        
         </mat-form-field>
         <div class = "button-row">
-          <button mat-raised-button color = "primary" type = "submit" [disabled] = "service.form.invalid">Aceptar</button>
-          <button mat-raised-button color = "warn" (click) = "onClear()">Cancelar</button>
+          <button mat-raised-button color = "primary" type = "submit" [disabled] = "service.form.invalid">Guardar</button>
+          <button mat-raised-button class = "mat-custom-warn" (click) = "onClear()">Cancelar</button>
 
         </div>
       </div>      
-</form>
+    </form>
+  </mat-card>
 </div>
-</div>
-
-
-
-
-  
 
