@@ -4,15 +4,13 @@ export class Video {
     id: string;
     user_id: number;
     category_id: string;
+    video_id: string;
     title: string;
     description: string;
-    destination: string;
     views: number;
-    size: number;
-    fieldname: string;
     originalname: string;
-    encoding: string;
     filename: string;
+    image:string;
 
   public constructor(init?: Partial<Video >) {
       Object.assign(this, init);
@@ -33,7 +31,7 @@ export const ALL_VIDEOS = gql `
     id 
     title 
     description
-    destination
+    image
   }
 }
 `
@@ -44,7 +42,7 @@ query videoById($id: String!){
     id 
     title 
     description
-    destination 
+    image
   }
 }
 `
@@ -55,7 +53,7 @@ query videosByName($name: String!){
     id 
     title 
     description
-    destination
+    image
   }
 }
 `
@@ -66,19 +64,17 @@ query videosByUser($id: Int!){
     id 
     title 
     description
-    destination
+    image
   }
 }
 `
 
 export const CREATE_VIDEO = gql `
-mutation createVideo($user_id: Int!,$category_id: String!,$title: String!,$destination: String!,
-  $description: String!) {
+mutation createVideo($user_id: Int!,$category_id: String!,$title: String!,$description: String!) {
     createVideo(video: {
       user_id: $user_id
       category_id: $category_id
       title: $title
-      destination: $destination
       description: $description
     }){
         id

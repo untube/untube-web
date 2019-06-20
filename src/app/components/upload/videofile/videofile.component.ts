@@ -121,7 +121,6 @@ export class VideofileComponent implements OnInit {
       video.title = form.title
       video.category_id = this.category_id
       video.description = form.description
-      video.destination = "/movie"
       console.log(video)
       this.newVideo(video)
       this.service.form.reset()
