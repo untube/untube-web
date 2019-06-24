@@ -31,7 +31,7 @@ query videosByCategoryId($id: String!){
     id 
     title 
     description
-    destination
+    image
   }
 }
 `

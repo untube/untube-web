@@ -1,0 +1,100 @@
+@font-face {
+	font-family: Moderne Sans;
+	src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/moderne_sans.woff2)
+  }
+
+
+
+h3 {
+	font-family: Moderne Sans, sans-serif;
+	text-align: center;
+	font-size: 2.5rem;
+	width: 100%;
+	letter-spacing: .5rem;
+  }
+
+  header{
+    padding-bottom: 2.5%;
+    color: #fff;
+    background: linear-gradient(rgba(0, 0, 0, 0.322), rgba(0, 0, 0, 0.322)), url("/assets/category-cover.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 125px;
+    padding-top: 2.5%;
+    margin: 15px;
+
+  }
+
+@import '~compass-mixins/lib/compass/css3';
+// Spin animation
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.stroke-dotted {
+  opacity: 0;
+  stroke-dasharray: 4,5;
+  stroke-width: 1px;
+  transform-origin: 50% 50%;
+  animation: spin 4s infinite linear;
+  transition: opacity 1s ease, 
+              stroke-width 1s ease;
+}
+.stroke-solid {
+  stroke-dashoffset: 0;
+  stroke-dashArray: 300;
+  stroke-width: 4px;
+  transition: stroke-dashoffset 1s ease, 
+              opacity 1s ease;
+}
+
+.icon {
+  transform-origin: 50% 50%;
+  transition: transform 200ms ease-out;
+}
+
+// Hover
+#play:hover {
+  .stroke-dotted {
+    stroke-width: 4px;
+    opacity: 1;
+  }
+  .stroke-solid {
+    opacity: 0;
+    stroke-dashoffset: 300;
+  }
+  .icon {
+    transform: scale(1.05);
+  }
+}
+
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-color: #30FF98;
+  background: radial-gradient(#71EDB5, #30FF98);
+}
+#play {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+
+.tile-image {
+  width: 95%;
+  height: auto;
+}
+
+
+.text-inside-grid {
+  position: absolute;
+  text-align: center;
+  color: black;
+  opacity:0.7;
+}

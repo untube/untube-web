@@ -4,7 +4,7 @@
             <mat-grid-tile-header>
                     <h1>{{video.title}}</h1>
             </mat-grid-tile-header>
-            <img height="200px"  src= "../assets/video.png" alt= {{video.title}}>
+            <img height="200px" src= "{{'data:image/png;base64,'+video.image}}" alt= "../assets/video.png">
                 <button  mat-raised-button color="primary" (click) = "onDelete(video.id)">
                     <mat-icon>delete</mat-icon>
                 </button>            

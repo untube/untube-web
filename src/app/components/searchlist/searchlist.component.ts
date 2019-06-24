@@ -9,7 +9,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 @Component({
   selector: 'app-searchlist',
   templateUrl: './searchlist.component.html',
-  styleUrls: ['./searchlist.component.css']
+  styleUrls: ['./searchlist.component.scss']
 })
 export class SearchlistComponent implements OnInit {
 

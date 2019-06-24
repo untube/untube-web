@@ -3,6 +3,18 @@
 	src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/moderne_sans.woff2)
   }
 
+  .tile-image {
+    width:95%;
+    height: auto;
+  }
+
+  .text-inside-grid {
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    opacity:0.90;
+  }
+
 
 
 h3 {
