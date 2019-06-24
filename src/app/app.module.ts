@@ -31,6 +31,10 @@ import {MatCardModule,MatTableModule,} from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator'; 
 import {MatDialogModule} from '@angular/material/dialog'
 import {VideofileComponent} from './components/upload/videofile/videofile.component';
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
  
 @NgModule({
   declarations: [
@@ -76,7 +80,11 @@ import {VideofileComponent} from './components/upload/videofile/videofile.compon
     MatDialogModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   exports: [
 
