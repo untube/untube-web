@@ -12,15 +12,21 @@
     position: absolute;
     text-align: center;
     color: #fff;
-    opacity:0.90;
+    opacity:0.60;
+    font-size: 35px;
+    font-family: Moderne Sans, sans-serif;
+    letter-spacing: .5rem;
+
   }
 
-
+  .text-inside-grid:hover {
+    opacity: 1;
+  }
 
 h3 {
 	font-family: Moderne Sans, sans-serif;
 	text-align: center;
-	font-size: 2.5rem;
+	font-size: 3.0rem;
 	width: 100%;
 	letter-spacing: .5rem;
   }
