@@ -20,6 +20,15 @@ video {
 
 }
 
+mat-video {
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 805px;
+    height: 453px;
+
+}
+
 .video-fixed{
     width: 600px;
 }
@@ -94,9 +103,7 @@ video {
     text-align: right;
 }
 
-.mat-drawer-container {
-    background-color: white;
-}
+
 
 .mat-drawer-side {
     border-right: none;
@@ -112,3 +119,43 @@ video {
 .item-margin {
     margin: 0 10px;
 }
+
+
+:host {
+    width: 100%;
+}
+
+.mat-slider-progress-background {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    fill: lightgrey;
+}
+
+.mat-slider-track-buffer {
+    background-color: lightgrey !important;
+}
+
+.mat-slider-thumb {
+    border-color: transparent !important;
+}
+
+.mat-slider-thumb {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.2s, opacity 0.2s linear;
+}
+
+:host:hover .mat-slider-thumb {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s linear;
+}
+
+progressbar > div[progress] {
+    height: 30px !important;
+  }
+  
+  progressbar > div[progress] > bar > .progress-bar {
+    font-size: 15px !important;
+  }

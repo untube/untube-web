@@ -87,13 +87,13 @@ export class VideofileComponent implements OnInit {
 
     fd.append('file',this.selectedFile,this.selectedFile.name);
 
-   // let headers = new Headers();
+   let headers = new Headers();
     /** No need to include Content-Type in Angular 4 */
-   // headers.append('Content-Type', 'multipart/form-data');
-   // headers.append('Accept', 'video/mp4')
+   headers.append('Content-Type', 'multipart/form-data');
+   headers.append('Accept', 'video/mp4')
 
-   var post_url = "http://35.196.3.185:3001/upload/" + id_string + "/" + category_id + "/" + title +"/" + description
-
+   var post_url = "/api/upload/" + id_string + "/" + category_id + "/" + title +"/" + description
+   
     this.http.post(post_url,fd,{
       reportProgress: true,
       observe: 'events'

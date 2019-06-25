@@ -7,6 +7,8 @@ import { Query, Video, VIDEO_BY_ID } from '../../models/video';
 import { WebsocketService } from '../../services/websocket.service';
 import { Socket } from 'dgram';
 import { queue } from 'rxjs/internal/scheduler/queue';
+import { resultKeyNameFromField } from 'apollo-utilities';
+
 
 @Component({  
   selector: 'app-videoplayer',
@@ -18,12 +20,9 @@ export class VideoplayerComponent implements OnInit {
   mode: number = 1;
   videoId;
   video$: Observable <Video>;
-  base: string = "";
-  base64: string
-  blob;
-  blobURL;
-  baseURL = "data:video/mp4;base64,";
+  baseURL = "http://35.196.3.185:3002/watch";
   queue = [];
+  src: String;
 
   constructor(private route: ActivatedRoute,private apollo: Apollo , private wss: WebsocketService) { 
 
@@ -37,8 +36,11 @@ export class VideoplayerComponent implements OnInit {
   });
 
   this.video$ = this.apollo.watchQuery<Query>({ query: VIDEO_BY_ID,variables: {id: this.videoId}
-  }).valueChanges.pipe(map(result => result.data.videoById));
+  }).valueChanges.pipe(map(result => result.data.videoById    
   
+    ));
+
+
 
   }
 
