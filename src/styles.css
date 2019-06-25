@@ -81,7 +81,7 @@ textarea.ng-invalid  {
   }
 
   snack-bar-container.notification simple-snack-bar{
-    font-size: 18px !important;
+    font-size: 14px !important;
     font-weight: bold;
   }
 

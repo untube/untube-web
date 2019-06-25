@@ -159,3 +159,19 @@ progressbar > div[progress] {
   progressbar > div[progress] > bar > .progress-bar {
     font-size: 15px !important;
   }
+  mat-video.controls[_ngcontent-sii-c10] .progress[_ngcontent-sii-c10] {
+    height: 10px !important;
+}
+:host /deep/  mat-video.video.controls[_ngcontent-sii-c10] .progress[_ngcontent-sii-c10] {
+    height: 10px !important;
+}
+mat-slider-horizontal {
+
+    height: 48px;
+    min-width: 805px;
+
+}
+.mat-slider-horizontal {
+    height:48px;
+    min-width:805px
+   }

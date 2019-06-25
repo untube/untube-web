@@ -1,35 +1,28 @@
 <div fxFlex>
-        <mat-grid-list cols="4" rowHeight="200px">
-          <mat-grid-tile *ngFor="let video of videos | async">
+
+
+        <mat-grid-list cols="4 " rowHeight="200px" [gutterSize]="'10px'">
+          <mat-grid-tile *ngFor="let video of videos$ | async">
             <mat-grid-tile-header>
                     <h1>{{video.title}}</h1>
             </mat-grid-tile-header>
-            <img height="200px" src= "{{'data:image/png;base64,'+video.image}}" alt= "../assets/video.png">
-                <button  mat-raised-button color="primary" (click) = "onDelete(video.id)">
+            <img height="200px" src= "{{'data:image/png;base64,'+video.image}}" alt= "/assets/video.png">
+                <button  mat-raised-button  (click) = "onDelete(video.id)">
                     <mat-icon>delete</mat-icon>
                 </button>            
           </mat-grid-tile>        
         </mat-grid-list>
 
 
-<div class="container">
+    <div class="container">
         <div class="container">
           <div fxLayout="column" fxLayoutGap="5px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
               <div class="blocks">
-                    <button button="submit" mat-raised-button color="primary" (click) = "onCreate()">
+                    <button mat-raised-button (click) = "onCreate()">
                         <mat-icon>cloud_upload</mat-icon> Subir
                     </button>
              </div>
+            </div>
         </div>
     </div>
-    </div>
-</div>
-
-<div class = "footer">
-    <mat-paginator [length]="videos.length"
-        [pageSize]="size"
-        [pageIndex]="page"
-        [pageSizeOptions]="[4, 8, 12]"
-        (page)="getData($event)">
-    </mat-paginator>
 </div>

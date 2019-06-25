@@ -1,10 +1,5 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
-@font-face {
-	font-family: Moderne Sans;
-	src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/moderne_sans.woff2)
-  }
-
 
 
 .container {
@@ -89,9 +84,6 @@ button.navbar-toggle.pull-left {
     }
 }
 
-a{
-  font-family: Moderne Sans;
-}
  
 .mat-sidenav {
   background: #007bff;  /* replace skyblue with any color */ 

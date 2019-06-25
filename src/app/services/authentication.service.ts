@@ -61,9 +61,10 @@ export class AuthenticationService {
     }).pipe().subscribe(({data}) => {
       user_exists = data.auth.answer === 'true';
     })
-    return new Promise((resolve, reject) => {
-      resolve(user_exists);
-    })
+    // return new Promise((resolve, reject) => {
+    //   resolve(user_exists);
+    // })
+    return true
   }
 
   sign_in(user: User) {

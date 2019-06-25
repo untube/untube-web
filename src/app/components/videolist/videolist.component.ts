@@ -19,6 +19,7 @@ export class VideolistComponent implements OnInit{
 
   ngOnInit() {
     this.videos$ = this.apollo.watchQuery<Query>({query: ALL_VIDEOS}).valueChanges.pipe(map(result => result.data.allVideos));
+    console.log(localStorage.getItem('uid'))
   }
 
   onSelect(video){

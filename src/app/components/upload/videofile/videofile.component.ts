@@ -10,6 +10,7 @@ import {NotificationService} from '../../../services/notification.service'
 import { map } from 'rxjs/operators';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {MAT_DIALOG_DATA} from '@angular/material'
+import { TokenQuery, IS_AUTHENTICATED } from 'src/app/models/token';
 
 
 @Component({
@@ -41,16 +42,27 @@ export class VideofileComponent implements OnInit {
   ]
 
   ngOnInit() {
-    console.log("Hola")
-    this.fileText = document.getElementById("custom-text")
 
+    this.fileText = document.getElementById("custom-text")
     this.service.initilizeFormGroup
     this.categories$ = this.apollo.watchQuery<Query>({ query: ALL_CATEGORIES}).valueChanges.pipe(map(result => result.data.allCategories));
-    //this.user_id = this.data.user_id
 
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = params.get('id');
-      this.user_id = parseInt(id);  
+      var token = localStorage.getItem('token')
+      var uid = localStorage.getItem('uid')
+      var client = localStorage.getItem('client')
+  
+      console.log(token,uid,client)
+  
+      this.apollo.watchQuery<TokenQuery>({ query: IS_AUTHENTICATED,
+        variables: 
+        {
+          token,
+          uid,
+          client
+        }
+      }).valueChanges.pipe().subscribe(({data}) =>{
+        console.log(data.validateToken.id)
+        this.user_id = parseInt(data.validateToken.id)
       });
 
       this.uploadValue = 0

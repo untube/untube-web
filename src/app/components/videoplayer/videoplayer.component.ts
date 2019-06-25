@@ -32,13 +32,10 @@ export class VideoplayerComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
     let id = params.get('id');
     this.videoId = id;
-    console.log(this.videoId)
   });
 
   this.video$ = this.apollo.watchQuery<Query>({ query: VIDEO_BY_ID,variables: {id: this.videoId}
-  }).valueChanges.pipe(map(result => result.data.videoById    
-  
-    ));
+  }).valueChanges.pipe(map(result => result.data.videoById));
 
 
 

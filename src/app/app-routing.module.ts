@@ -10,7 +10,7 @@ import { SignUpComponent} from './components/sign-up/sign-up.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { CommentariesComponent } from './components/commentaries/commentaries.component';
 import { VideofileComponent } from './components/upload/videofile/videofile.component';
-import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { AuthGuardService as AuthGuard, AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
 
   {path: 'sign-in', component: SignInComponent},
@@ -21,8 +21,8 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'categories/:id', component: CategoryvideolistComponent},
   {path: 'search/:name', component: SearchlistComponent},
-  {path: 'profile/:id/videos', component: UploadComponent},
-  {path: 'profile/:id', component: VideofileComponent},
+  {path: 'profile', component: UploadComponent},
+  {path: 'profile/upload', component: VideofileComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full' }
 
 

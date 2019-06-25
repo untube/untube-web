@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
+import { FormBuilder} from  '@angular/forms';
 import { UploadService } from  '../../services/upload.service';
 import { Apollo } from 'apollo-angular';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog'
-import { HttpClient, HttpEventType} from '@angular/common/http';
-import { Video, CREATE_VIDEO, DELETE_VIDEO, Query, ALL_VIDEOS, VIDEOS_BY_USER } from '../../models/video';
-import { VideofileComponent } from './videofile/videofile.component';
+import {MatDialog} from '@angular/material/dialog'
+import { HttpClient} from '@angular/common/http';
+import { Video,DELETE_VIDEO, Query,VIDEOS_BY_USER } from '../../models/video';
+import { AuthGuardService } from '../../services/auth-guard.service'
 import { NotificationService } from 'src/app/services/notification.service';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
-import { Route, ParamMap, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import {TokenQuery,IS_AUTHENTICATED,Token} from '../../models/token';
 
 @Component({
   selector: 'app-upload',
@@ -18,23 +19,18 @@ import { Route, ParamMap, ActivatedRoute, Router } from '@angular/router';
 })
 export class UploadComponent implements OnInit {
 
-  form: FormGroup;
   error: string;
   uploadResponse = { status: '', message: '', filePath: '' };
-  selectedFile: File;
    
   page = 0;
   size = 4;
 
   videos: Observable<any[]>;
   videos$: Observable<Video[]>;
-  user_id: number
+  user_id: number;
+  token$: Observable<Token>;
 
-
-  categories = ['Really Smart', 'Super Flexible',
-            'Super Hot', 'Weather Changer'];
-
-  constructor(private formBuilder: FormBuilder, private uploadService: UploadService,private fb: FormBuilder, 
+  constructor(private formBuilder: FormBuilder, private uploadService: UploadService,private fb: FormBuilder,private auth: AuthGuardService,
     private apollo: Apollo,private http: HttpClient, private dialog: MatDialog,private notification: NotificationService,private route: ActivatedRoute,private router: Router) {
 
   }
@@ -43,26 +39,27 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
 
 
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = params.get('id');
-      this.user_id = parseInt(id);
+    var token = localStorage.getItem('token')
+    var uid = localStorage.getItem('uid')
+    var client = localStorage.getItem('client')
+
+    console.log(token,uid,client)
+
+    this.apollo.watchQuery<TokenQuery>({ query: IS_AUTHENTICATED,
+      variables: 
+      {
+        token,
+        uid,
+        client
+      }
+    }).valueChanges.pipe().subscribe(({data}) =>{
+      console.log(data.validateToken.id)
+      this.user_id = parseInt(data.validateToken.id)
       this.videos$ = this.apollo.watchQuery<Query>({ query: VIDEOS_BY_USER,variables: {id: this.user_id}
-      }).valueChanges.pipe(map(result => result.data.videosByName));
-  
-      console.log(this.videos$)
-  
-  
-      });
+      }).valueChanges.pipe(map(result => result.data.videosByUser));
 
+    });
 
-    /*this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = params.get('id');
-      this.user_id = parseInt(id);
-
-      console.log(this.user_id)
-      });
-    this.videos$ = this.apollo.watchQuery<Query>({query: ALL_VIDEOS}).valueChanges.pipe(map(result => result.data.allVideos));
-    this.getData({pageIndex: this.page, pageSize: this.size});*/
   }
 
   getData(obj) {
@@ -76,7 +73,6 @@ export class UploadComponent implements OnInit {
     }));
   }
 
-
   onDelete(videoId){
     console.log("Delete Video with Id:"+ videoId)
 
@@ -88,26 +84,18 @@ export class UploadComponent implements OnInit {
         }
       }).subscribe(({ data }) => {
         console.log('got data', data);
-        this.notification.succes('::Borrado Exitoso')
+        this.notification.succes('Video Eliminado')
       },(error) => {
         console.log('there was an error sending the query', error);
       });
     } 
+
+    
+
   }
 
   onCreate(){
-    /*
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-    dialogConfig.data = {user_id: this.user_id}
-    this.dialog.open(VideofileComponent,dialogConfig)
-    */
-
-   this.router.navigate(['/profile',this.user_id]);
-
-
+   this.router.navigate(['/profile/upload']);
   }
 
 }

@@ -85,9 +85,7 @@ mutation createVideo($user_id: Int!,$category_id: String!,$title: String!,$descr
 
 export const DELETE_VIDEO = gql `
 mutation deleteVideo($id: String!) {
-    deleteVideo(id: $id ){
-      ok
-    }
+    deleteVideo(id: $id )
   }
 `
 

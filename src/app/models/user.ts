@@ -11,6 +11,7 @@ export class User {
     check_conditions: String;
 }
 
+
 export const SIGN_UP = gql`
   mutation createUser ($name: String!, $nickname: String!, $email: String!, $password: String!, $password_confirmation: String!){
     createUser(user: {
@@ -59,6 +60,9 @@ export const IS_AUTHENTICATED = gql`
         uid: $uid
         token: $token
     }) {
+      id
+      name
+      nickname  
       token
     }
   }
