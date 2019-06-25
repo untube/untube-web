@@ -31,7 +31,8 @@ import {MatCardModule,MatTableModule,} from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator'; 
 import {MatDialogModule} from '@angular/material/dialog'
 import {VideofileComponent} from './components/upload/videofile/videofile.component';
- 
+import {AuthGuardService} from './services/auth-guard.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,8 +81,8 @@ import {VideofileComponent} from './components/upload/videofile/videofile.compon
   ],
   exports: [
 
-  ],
-  providers: [WebsocketService, VideouploadService],
+  ], 
+  providers: [WebsocketService, VideouploadService, AuthGuardService],
   bootstrap: [AppComponent],
   entryComponents: [VideofileComponent]
 })

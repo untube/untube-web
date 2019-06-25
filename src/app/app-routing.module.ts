@@ -10,13 +10,13 @@ import { SignUpComponent} from './components/sign-up/sign-up.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { CommentariesComponent } from './components/commentaries/commentaries.component';
 import { VideofileComponent } from './components/upload/videofile/videofile.component';
-
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 const routes: Routes = [
 
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'commentaries', component: CommentariesComponent},
-  {path: 'home',component: VideolistComponent},
+  {path: 'home',component: VideolistComponent, canActivate: [AuthGuard] },
   {path: 'watch/:id', component: VideoplayerComponent},
   {path: 'categories', component: CategoriesComponent},
   {path: 'categories/:id', component: CategoryvideolistComponent},
