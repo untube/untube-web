@@ -32,6 +32,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog'
 import {VideofileComponent} from './components/upload/videofile/videofile.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +61,6 @@ import {AuthGuardService} from './services/auth-guard.service';
     HttpClientModule,
     BrowserAnimationsModule,
     BrowserModule,
-    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,    
     MatInputModule, 
@@ -77,7 +81,11 @@ import {AuthGuardService} from './services/auth-guard.service';
     MatDialogModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   exports: [
 

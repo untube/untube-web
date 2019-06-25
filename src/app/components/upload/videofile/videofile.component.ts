@@ -77,14 +77,24 @@ export class VideofileComponent implements OnInit {
 
     //select name!
 
+
+    var form = this.service.form.value
+
+    var id_string = this.user_id
+    var category_id = this.category_id
+    var description = form.description
+    var title = form.title
+
     fd.append('file',this.selectedFile,this.selectedFile.name);
 
-   // let headers = new Headers();
+   let headers = new Headers();
     /** No need to include Content-Type in Angular 4 */
-   // headers.append('Content-Type', 'multipart/form-data');
-   // headers.append('Accept', 'video/mp4')
+   headers.append('Content-Type', 'multipart/form-data');
+   headers.append('Accept', 'video/mp4')
 
-    this.http.post('http://localhost:3002/upload',fd,{
+   var post_url = "http://35.196.3.185:3001/upload/" + id_string + "/" + category_id + "/" + title +"/" + description
+   
+    this.http.post(post_url,fd,{
       reportProgress: true,
       observe: 'events'
     }).
@@ -92,6 +102,9 @@ export class VideofileComponent implements OnInit {
       if(event.type === HttpEventType.UploadProgress){
         this.uploadValue = Math.round(event.loaded / event.total * 100 )
         console.log("Upload progress: " +  Math.round(event.loaded / event.total * 100 ) + '%');
+        if(this.uploadValue == 100){
+          this.notification.succes('::Carga Exitosa')
+        }
       }else if (event.type === HttpEventType.Response){
         console.log(event)
       }
@@ -102,30 +115,12 @@ export class VideofileComponent implements OnInit {
   onClear(){
     this.service.form.reset()
     this.service.initilizeFormGroup;
-   // this.onClose();
 
   }
 
-  /*onClose(){
-    this.service.form.reset();
-    this.service.initilizeFormGroup;
-   // this.dialogRef.close()
-  }*/
-
   onSubmit(){
-    if(this.service.form.valid && this.uploadValue == 100){
-      var form : any;
-      var video = new Video()
-      video.user_id = this.user_id
-      form = this.service.form.value
-      video.title = form.title
-      video.category_id = this.category_id
-      video.description = form.description
-      console.log(video)
-      this.newVideo(video)
-      this.service.form.reset()
-      this.service.initilizeFormGroup
-     // this.onClose();
+    if(this.service.form.valid){
+
     }
     else{
       this.onClear()
@@ -133,9 +128,7 @@ export class VideofileComponent implements OnInit {
   }
 
   onSelect(category){
-
     this.category_id = category.id
-
   }
 
 
