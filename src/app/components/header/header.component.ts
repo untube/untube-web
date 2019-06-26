@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -15,5 +16,13 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.clear();
     location.reload();
+  }
+
+  isAuthenticated(): boolean {
+    let result: boolean;
+    this.authService.isAuthenticated().then((response) => {
+      result = response;
+    })
+    return result;
   }
 }

@@ -52,7 +52,7 @@
                 <span  class="label">Login</span>
               </a>
               </li>
-            <li>
+            <li [hidden]="isAuthenticated()">
                 <a (click)="logout()">
                   <mat-icon class="icon">input</mat-icon>
                   <span class="label">Logout</span>

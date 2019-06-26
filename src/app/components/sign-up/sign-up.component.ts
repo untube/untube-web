@@ -37,13 +37,8 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     this.user = this.signUpForm.value;
-    this.authService.sign_up(this.user).subscribe(({data}) => {
-        console.log('Got data', data);
-        this.router.navigate(['/']);
-        localStorage.setItem('token', data.createUser.token);
-        localStorage.setItem('client', data.createUser.client);
-        localStorage.setItem('type', data.createUser.type);
-        localStorage.setItem('uid', this.user.email);
+    this.authService.sign_up(this.user).then((resposne) => {
+        this.router.navigateByUrl('/');
       }, (error) => {
         console.log('There was an error sending the mutation', error);
       });

@@ -12,19 +12,26 @@ export class AuthenticationService {
   constructor(private apollo: Apollo) { }
 
   sign_up(user: User) {
-    return this.apollo.mutate({
-      mutation: SIGN_UP,
-      variables: {
-        name: user.name,
-        nickname: user.username,
-        email: user.email,
-        password: user.password,
-        password_confirmation: user.password_confirmation
-      }
+    return new Promise((resolve, reject) => {
+      this.apollo.mutate({
+        mutation: SIGN_UP,
+        variables: {
+          name: user.name,
+          nickname: user.username,
+          email: user.email,
+          password: user.password,
+          password_confirmation: user.password_confirmation
+        }
+      }).subscribe(({data}) => {
+        localStorage.setItem('token', data.createUser.token);
+        localStorage.setItem('client', data.createUser.client);
+        localStorage.setItem('uid', user.email);
+        resolve(data);
+      });
     });
   }
 
-  public isAuthenticated() {
+  public isAuthenticated(): Promise<boolean>{
     const token = localStorage.getItem('token')  != null ? localStorage.getItem('token')  : '';
     const client = localStorage.getItem('client')  != null ? localStorage.getItem('client')  : '';
     const uid = localStorage.getItem('uid')  != null ? localStorage.getItem('uid')  : '';
@@ -68,15 +75,21 @@ export class AuthenticationService {
   }
 
   sign_in(user: User) {
-    if (this.auth(user)){
-      return this.apollo.mutate({
-        mutation: SIGN_IN,
-        variables: {
-          email: user.email,
-          password: user.password
-        }
-      });
-    }
-    return null;
+    return new Promise((resolve, reject) => {
+      if (this.auth(user)){
+        this.apollo.mutate({
+          mutation: SIGN_IN,
+          variables: {
+            email: user.email,
+            password: user.password
+          }
+        }).subscribe(({data}) => {
+          localStorage.setItem('token', data.createSession.token);
+          localStorage.setItem('client', data.createSession.client);
+          localStorage.setItem('uid', user.email);
+          resolve(data);
+        });
+      }
+    });
   }
 }

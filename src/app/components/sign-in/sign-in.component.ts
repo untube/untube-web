@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  
+
   user: any = {};
   signInForm: FormGroup;
 
@@ -20,20 +20,15 @@ export class SignInComponent implements OnInit {
    ngOnInit() {
     this.user = new User();
     this.signInForm = new FormGroup({
-      'email': new FormControl(this.user.email, [Validators.email, Validators.required]),
-      'password': new FormControl(this.user.password, [Validators.required, Validators.minLength(8)]),
+      email: new FormControl(this.user.email, [Validators.email, Validators.required]),
+      password: new FormControl(this.user.password, [Validators.required, Validators.minLength(8)]),
     });
   }
-  
+
   onSubmit() {
     this.user = this.signInForm.value;
-    this.authService.sign_in(this.user).subscribe(({data}) => {
-        console.log('Got data', data);
-        this.router.navigate(['/']);
-        localStorage.setItem('token', data.createSession.token);
-        localStorage.setItem('client', data.createSession.client);
-        localStorage.setItem('type', data.createSession.type);
-        localStorage.setItem('uid', this.user.email);
+    this.authService.sign_in(this.user).then((response) => {
+        this.router.navigateByUrl('/');
       }, (error) => {
         console.log('There was an error sending the mutation', error);
       });
