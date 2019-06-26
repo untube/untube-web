@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'categories/:id', component: CategoryvideolistComponent},
   {path: 'search/:name', component: SearchlistComponent},
-  {path: 'profile', component: UploadComponent},
+  {path: 'profile', component: UploadComponent, canActivate: [AuthGuard]},
   {path: 'profile/upload', component: VideofileComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full' }
 
