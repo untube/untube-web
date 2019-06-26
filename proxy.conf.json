@@ -1,0 +1,7 @@
+{
+    "/upload/*":{
+        "target": "http://35.196.3.185:3001",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

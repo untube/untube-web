@@ -1,4 +1,4 @@
-<div fxFlex>
+<div fxFlex class = "upload">
 
 
         <mat-grid-list cols="4 " rowHeight="200px" [gutterSize]="'10px'">
@@ -7,9 +7,12 @@
                     <h1>{{video.title}}</h1>
             </mat-grid-tile-header>
             <img height="200px" src= "{{'data:image/png;base64,'+video.image}}" alt= "/assets/video.png">
+
+            <mat-grid-tile-footer>
                 <button  mat-raised-button  (click) = "onDelete(video.id)">
                     <mat-icon>delete</mat-icon>
-                </button>            
+                </button>
+            </mat-grid-tile-footer>
           </mat-grid-tile>        
         </mat-grid-list>
 

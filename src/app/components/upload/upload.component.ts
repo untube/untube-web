@@ -43,8 +43,6 @@ export class UploadComponent implements OnInit {
     var uid = localStorage.getItem('uid')
     var client = localStorage.getItem('client')
 
-    console.log(token,uid,client)
-
     this.apollo.watchQuery<TokenQuery>({ query: IS_AUTHENTICATED,
       variables: 
       {
@@ -53,7 +51,6 @@ export class UploadComponent implements OnInit {
         client
       }
     }).valueChanges.pipe().subscribe(({data}) =>{
-      console.log(data.validateToken.id)
       this.user_id = parseInt(data.validateToken.id)
       this.videos$ = this.apollo.watchQuery<Query>({ query: VIDEOS_BY_USER,variables: {id: this.user_id}
       }).valueChanges.pipe(map(result => result.data.videosByUser));

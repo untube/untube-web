@@ -104,8 +104,8 @@ export class VideofileComponent implements OnInit {
    headers.append('Content-Type', 'multipart/form-data');
    headers.append('Accept', 'video/mp4')
 
-   var post_url = "http://35.196.3.185:3001/upload/" + id_string + "/" + category_id + "/" + title +"/" + description
-   
+   //var post_url = "http://35.196.3.185:3001/upload/" + id_string + "/" + category_id + "/" + title +"/" + description
+    var post_url = "/upload/" + id_string + "/" + category_id + "/" + title +"/" + description
     this.http.post(post_url,fd,{
       reportProgress: true,
       observe: 'events'

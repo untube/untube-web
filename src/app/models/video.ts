@@ -32,6 +32,7 @@ export const ALL_VIDEOS = gql `
     title 
     description
     image
+    views
   }
 }
 `
@@ -43,6 +44,7 @@ query videoById($id: String!){
     title 
     description
     image
+    views
   }
 }
 `
@@ -54,6 +56,7 @@ query videosByName($name: String!){
     title 
     description
     image
+    views
   }
 }
 `
@@ -65,6 +68,7 @@ query videosByUser($id: Int!){
     title 
     description
     image
+    views
   }
 }
 `
