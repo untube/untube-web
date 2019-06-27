@@ -93,7 +93,7 @@ export class AuthenticationService {
     });
   }
 
-  public resolveAfterSeconds() {
+  public resolveAfterSeconds(): Promise<boolean> {
     return new Promise((resolve,reject) => {
       setTimeout(() => {
 

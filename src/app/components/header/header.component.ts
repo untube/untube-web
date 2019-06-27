@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   isAuthenticated(): boolean {
     let result: boolean;
-    this.authService.isAuthenticated().then((response) => {
+    this.authService.resolveAfterSeconds().then((response) => {
       result = response;
     })
     return result;
