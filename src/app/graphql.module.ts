@@ -5,7 +5,7 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 
 //const uri = 'http://192.168.99.103:5000/graphql'; //Graphql server URL
 //const uri = 'http://34.73.94.91:5000/graphql'
-const uri = 'http://35.196.3.185:5000/graphql'
+const uri = 'http://35.196.3.185/graphql'
 
 
 
