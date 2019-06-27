@@ -17,6 +17,7 @@ export class SignUpComponent implements OnInit {
   user: any = {};
   signUpForm: FormGroup;
   categories: Category[];
+  alert: string;
 
   constructor(private authService: AuthenticationService,
               private router: Router) { }
@@ -37,8 +38,9 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     this.user = this.signUpForm.value;
-    this.authService.sign_up(this.user).then((resposne) => {
-        this.router.navigateByUrl('/');
+    this.authService.sign_up(this.user).then((response) => {
+      this.router.navigateByUrl('/');
+      this.alert = response.message;
       }, (error) => {
         console.log('There was an error sending the mutation', error);
       });

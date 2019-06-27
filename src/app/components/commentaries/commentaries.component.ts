@@ -37,7 +37,7 @@ export class CommentariesComponent implements OnInit {
         id_video: this.id_video
       }
     }).valueChanges.subscribe((data) => {
-      console.log(data);
+      this.commentaries = data;
     }, (error) => {
       console.log(error);
     })
