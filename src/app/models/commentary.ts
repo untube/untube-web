@@ -11,7 +11,7 @@ export type Query = {
 }
 
 export const CREATE_COMMENTARY = gql`
-  mutation createCommentary ($subject: String, $description: String, $id_user: Int, $id_video: String){
+  mutation createCommentary ($subject: String!, $description: String!, $id_user: Int!, $id_video: String!){
     createCommentary(commentary: {
         subject: $subject,
         description: $description,
@@ -24,11 +24,11 @@ export const CREATE_COMMENTARY = gql`
 `;
 
 export const COMMENTARIES_BY_VIDEO = gql ` 
-    query commentariesByVideo($id: String!){
-        commentariesByVideo(id: $id){
+    query commentariesByVideo($id_video: String!){
+        commentariesByVideo(id_video: $id_video){
             subject 
             description 
-            user_id
+            id_user
         }
     }
 `;

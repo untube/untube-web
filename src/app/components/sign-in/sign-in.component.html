@@ -17,6 +17,7 @@
                     <input type="password" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
                 </div>
                 <hr>
+                <div class="alert alert-danger" *ngIf="alert">{{alert}}</div>
                 <button type="submit" class="btn btn-primary mb-3">Entrar</button>
                 <div class="container-fluid">
                     <a class="text-muted" href="#">¿Olvidaste tu contraseña?</a>

@@ -34,15 +34,19 @@ export class VideoplayerComponent implements OnInit {
     this.videoId = id;
   });
 
-  this.video$ = this.apollo.watchQuery<Query>({ query: VIDEO_BY_ID,variables: {id: this.videoId}
-  }).valueChanges.pipe(map(result => result.data.videoById));
-
-
-
+    this.video$ = this.apollo.watchQuery<Query>(
+      { query: VIDEO_BY_ID,
+        variables: {
+          id: this.videoId
+        }
+      }).valueChanges.pipe(
+        map(result => result.data.videoById)
+      );
   }
 
-
-
+  get isAuthenticated(): boolean {
+    return !(localStorage.getItem('token') == null);
+  }
 
 }
 

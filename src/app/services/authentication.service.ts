@@ -31,30 +31,27 @@ export class AuthenticationService {
     });
   }
 
-  public isAuthenticated(): Promise<boolean>{
+  public getUserData(): Promise<any> {
     const token = localStorage.getItem('token')  != null ? localStorage.getItem('token')  : '';
     const client = localStorage.getItem('client')  != null ? localStorage.getItem('client')  : '';
     const uid = localStorage.getItem('uid')  != null ? localStorage.getItem('uid')  : '';
-    let is_authenticated;
-
-    this.apollo.watchQuery({
-      query: IS_AUTHENTICATED,
-      variables: {
-        token,
-        client,
-        uid
-      }
-    }).valueChanges.subscribe(
-      ({data}) => {
-        is_authenticated = true;
-      }, (error) => {
-        is_authenticated = false;
-        console.log('There was an error sending the mutation', error);
-      }
-    );
     return new Promise((resolve, reject) => {
-      resolve(is_authenticated);
-    })
+      this.apollo.watchQuery({
+        query: IS_AUTHENTICATED,
+        variables: {
+          token,
+          client,
+          uid
+        }
+      }).valueChanges.subscribe(
+        ({data}) => {
+          resolve(data);
+        }, (error) => {
+          reject(error);
+          console.log('There was an error sending the mutation', error);
+        }
+      );
+    });
   }
 
   auth(user: User): Promise<boolean> {
@@ -66,33 +63,39 @@ export class AuthenticationService {
           password: user.password
         }
       }).pipe().subscribe(({data}) => {
-        let user_exists = data.auth.answer === 'true';
+        const user_exists = data.auth.answer === 'true';
         resolve(user_exists);
+      });
+    });
+  }
+
+  sign_in(user: User): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.auth(user).then((response) => {
+        if (response) {
+          this.apollo.mutate({
+            mutation: SIGN_IN,
+            variables: {
+              email: user.email,
+              password: user.password
+            }
+          }).subscribe(({data}) => {
+            localStorage.setItem('token', data.createSession.token);
+            localStorage.setItem('client', data.createSession.client);
+            localStorage.setItem('uid', user.email);
+            resolve({data, message: 'Usuario autorizado'});
+          }, (error) => {
+            reject(error);
+          });
+        } else {
+          resolve({data: null, message: 'Usuario no autorizado comuniquese con el administrador del sistema'});
+        }
       })
     });
   }
 
-  sign_in(user: User) {
-    return new Promise((resolve, reject) => {
-      if (this.auth(user)){
-        this.apollo.mutate({
-          mutation: SIGN_IN,
-          variables: {
-            email: user.email,
-            password: user.password
-          }
-        }).subscribe(({data}) => {
-          localStorage.setItem('token', data.createSession.token);
-          localStorage.setItem('client', data.createSession.client);
-          localStorage.setItem('uid', user.email);
-          resolve(data);
-        });
-      }
-    });
-  }
-
   public resolveAfterSeconds(): Promise<boolean> {
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
 
         const token = localStorage.getItem('token')  != null ? localStorage.getItem('token')  : '';
@@ -103,7 +106,7 @@ export class AuthenticationService {
         if (localStorage.getItem('token') == null) {
           is_authenticated = false;
           resolve(false);
-        } else{
+        } else {
           this.apollo.watchQuery({
             query: IS_AUTHENTICATED,
             variables: {
@@ -114,7 +117,7 @@ export class AuthenticationService {
           }).valueChanges.subscribe(
             ({data}) => {
               is_authenticated = true;
-              resolve(is_authenticated)
+              resolve(is_authenticated);
             }, (error) => {
               is_authenticated = false;
               console.log('There was an error sending the mutation', error);
@@ -122,10 +125,10 @@ export class AuthenticationService {
           );
         }
       });
-      setTimeout(() => resolve(false),1000);
+      setTimeout(() => resolve(false), 1000);
     });
   }
 
 
-  
+
 }

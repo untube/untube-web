@@ -34,13 +34,13 @@
      </div>
      <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
         <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-            <li>
+            <li *ngIf="isAuthenticated">
               <a routerLink = "profile">
                   <mat-icon class="icon">video_library</mat-icon>
                   <span class="label">Mis Videos</span>
               </a>
             </li>
-            <li>
+            <li >
                 <a routerLink = "categories">
                     <mat-icon class="icon">dashboard</mat-icon>
                     <span class="label">Categorias</span>

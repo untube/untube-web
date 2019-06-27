@@ -13,7 +13,7 @@ export class SignInComponent implements OnInit {
 
   user: any = {};
   signInForm: FormGroup;
-
+  alert: string;
   constructor(private authService: AuthenticationService,
               private router: Router) { }
 
@@ -29,6 +29,7 @@ export class SignInComponent implements OnInit {
     this.user = this.signInForm.value;
     this.authService.sign_in(this.user).then((response) => {
         this.router.navigateByUrl('/');
+        this.alert = response.message;
       }, (error) => {
         console.log('There was an error sending the mutation', error);
       });
