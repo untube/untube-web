@@ -90,7 +90,7 @@ import {VgBufferingModule} from 'videogular2/buffering';
   exports: [
 
   ], 
-  providers: [WebsocketService, VideouploadService, AuthGuardService],
+  providers: [WebsocketService, VideouploadService, AuthGuardService ],
   bootstrap: [AppComponent],
   entryComponents: [VideofileComponent]
 })

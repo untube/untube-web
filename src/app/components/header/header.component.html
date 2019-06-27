@@ -46,13 +46,13 @@
                     <span class="label">Categorias</span>
                 </a>
               </li>
-            <li>
+            <li *ngIf="!isAuthenticated">
               <a routerLink = "sign-in">
                 <mat-icon class="icon">input</mat-icon>
                 <span  class="label">Login</span>
               </a>
               </li>
-            <li>
+            <li *ngIf="isAuthenticated">
                 <a (click)="logout()">
                   <mat-icon class="icon">input</mat-icon>
                   <span class="label">Logout</span>
