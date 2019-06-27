@@ -15,7 +15,7 @@ RUN npm install -g @angular/cli@7.3.9
 COPY .  /untube-web
 
 RUN npm install
-
 # start app
 #CMD ng serve --host 0.0.0.0 --disableHostCheck
 CMD npm start
+EXPOSE 4200

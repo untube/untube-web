@@ -10,11 +10,6 @@
   </mat-video> 
   <h3> {{ (video$ | async)?.title }} </h3>
   <p>
-    <ng-container>
-        {{ (video$ | async)?.description }}
-    </ng-container>
-  </p>
-  <p>
       <ng-container>
           {{(video$| async).views + ' Vistas' }}
       </ng-container>
