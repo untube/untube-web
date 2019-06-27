@@ -105,7 +105,7 @@ export class VideofileComponent implements OnInit {
    headers.append('Accept', 'video/mp4')
 
    //var post_url = "http://35.196.3.185:3001/upload/" + id_string + "/" + category_id + "/" + title +"/" + description
-    var post_url = "/upload/" + id_string + "/" + category_id + "/" + title +"/" + description + "/" + localStorage.getItem('tokenFirebase')
+    var post_url = "/upload/" + id_string + "/" + category_id + "/" + title +"/" + description
     this.http.post(post_url,fd,{
       reportProgress: true,
       observe: 'events'
@@ -115,7 +115,7 @@ export class VideofileComponent implements OnInit {
         this.uploadValue = Math.round(event.loaded / event.total * 100 )
         console.log("Upload progress: " +  Math.round(event.loaded / event.total * 100 ) + '%');
         if(this.uploadValue == 100){
-          this.notification.succes('::Carga Exitosa')
+          this.notification.succes('Carga Exitosa')
         }
       }else if (event.type === HttpEventType.Response){
         console.log(event)
