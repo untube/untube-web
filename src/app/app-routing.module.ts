@@ -15,8 +15,8 @@ const routes: Routes = [
 
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'commentaries', component: CommentariesComponent},
-  {path: 'home',component: VideolistComponent},
+  {path: 'commentaries', component: CommentariesComponent, canActivate: [AuthGuard]},
+  {path: 'home',component: VideolistComponent, canActivate: [AuthGuard]},
   {path: 'watch/:id', component: VideoplayerComponent},
   {path: 'categories', component: CategoriesComponent},
   {path: 'categories/:id', component: CategoryvideolistComponent},

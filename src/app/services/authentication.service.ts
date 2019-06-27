@@ -101,25 +101,28 @@ export class AuthenticationService {
         const client = localStorage.getItem('client')  != null ? localStorage.getItem('client')  : '';
         const uid = localStorage.getItem('uid')  != null ? localStorage.getItem('uid')  : '';
         let is_authenticated;
-    
-        this.apollo.watchQuery({
-          query: IS_AUTHENTICATED,
-          variables: {
-            token,
-            client,
-            uid
-          }
-        }).valueChanges.subscribe(
-          ({data}) => {
-            is_authenticated = true;
-            console.log(data)
-            resolve(is_authenticated)
-          }, (error) => {
-            is_authenticated = false;
-            console.log('There was an error sending the mutation', error);
-          }
-        );
-      
+
+        if (localStorage.getItem('token') == null) {
+          is_authenticated = false;
+          resolve(false);
+        } else{
+          this.apollo.watchQuery({
+            query: IS_AUTHENTICATED,
+            variables: {
+              token,
+              client,
+              uid
+            }
+          }).valueChanges.subscribe(
+            ({data}) => {
+              is_authenticated = true;
+              resolve(is_authenticated)
+            }, (error) => {
+              is_authenticated = false;
+              console.log('There was an error sending the mutation', error);
+            }
+          );
+        }
       });
       setTimeout(() => resolve(false),1000);
     });

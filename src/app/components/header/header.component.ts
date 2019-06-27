@@ -16,16 +16,11 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     localStorage.clear();
-    location.reload();
     this.router.navigate(['sign-in']);
 
   }
 
-  isAuthenticated(): boolean {
-    let result: boolean;
-    this.authService.resolveAfterSeconds().then((response) => {
-      result = response;
-    })
-    return result;
+  get isAuthenticated(): boolean {
+    return !(localStorage.getItem('token') == null);
   }
 }

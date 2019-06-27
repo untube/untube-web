@@ -21,11 +21,12 @@ export class AuthGuardService implements CanActivate {
 
   async canActivate(){
 
-    let is_authenticated
+    let is_authenticated;
 
-    is_authenticated = await this.auth.resolveAfterSeconds()
+    is_authenticated = await this.auth.resolveAfterSeconds();
 
     if(!is_authenticated){
+      localStorage.clear();
       this.router.navigate(['sign-in']);
     }
     return is_authenticated;
