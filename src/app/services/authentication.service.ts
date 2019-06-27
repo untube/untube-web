@@ -57,21 +57,19 @@ export class AuthenticationService {
     })
   }
 
-  auth(user: User) {
-    let user_exists = false
-    this.apollo.mutate({
-      mutation: AUTHORIZATION,
-      variables: {
-        email: user.email,
-        password: user.password
-      }
-    }).pipe().subscribe(({data}) => {
-      user_exists = data.auth.answer === 'true';
-    })
-    // return new Promise((resolve, reject) => {
-    //   resolve(user_exists);
-    // })
-    return true
+  auth(user: User): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.apollo.mutate({
+        mutation: AUTHORIZATION,
+        variables: {
+          email: user.email,
+          password: user.password
+        }
+      }).pipe().subscribe(({data}) => {
+        let user_exists = data.auth.answer === 'true';
+        resolve(user_exists);
+      })
+    });
   }
 
   sign_in(user: User) {
