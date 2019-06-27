@@ -11,7 +11,7 @@ export class AuthenticationService {
 
   constructor(private apollo: Apollo) { }
 
-  sign_up(user: User) {
+  sign_up(user: User): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apollo.mutate({
         mutation: SIGN_UP,
@@ -23,10 +23,9 @@ export class AuthenticationService {
           password_confirmation: user.password_confirmation
         }
       }).subscribe(({data}) => {
-        localStorage.setItem('token', data.createUser.token);
-        localStorage.setItem('client', data.createUser.client);
-        localStorage.setItem('uid', user.email);
-        resolve(data);
+        this.sign_in(user).then((response) => {
+          resolve(response);
+        })
       });
     });
   }
@@ -119,7 +118,7 @@ export class AuthenticationService {
               is_authenticated = true;
               resolve(is_authenticated);
             }, (error) => {
-              is_authenticated = false;
+              reject(error);
               console.log('There was an error sending the mutation', error);
             }
           );
