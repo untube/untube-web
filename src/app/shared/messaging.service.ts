@@ -35,6 +35,7 @@ export class MessagingService {
       () => {
         const data = {};
         data[userId] = token
+        localStorage.setItem('tokenFirebase', token )
         this.angularFireDB.object('fcmTokens/').update(data)
       })
   }
