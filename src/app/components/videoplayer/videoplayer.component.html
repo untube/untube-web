@@ -1,31 +1,45 @@
 
-
 <hr>
 
-<div class="video-container">
-  <mat-video title="{{ (video$ | async)?.title }}" [autoplay]="true" [preload]="true" [fullscreen]="true" [download]="false"  spinner="spin" poster="image.jpg" controls>
-    <source matVideoSource type="video/mp4" #video src= "http://35.196.3.185:3002/watch/{{ (video$ | async)?.id }}">
-    <track matVideoTrack  src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">
-    <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">
-  </mat-video> 
-  <h3> {{ (video$ | async)?.title }} </h3>
-  <p>
-      <ng-container>
-          {{(video$| async).views + ' Vistas' }}
-      </ng-container>
-    </p>
-  
-</div>
-<app-commentaries></app-commentaries>
-<hr>
-
-
-<!--
+<div>
 <div class = "video-container">
-  <h3>{{ (video$ | async)?.title }}</h3>
-      <video [preload] = "true" controls>
-          <source src = "{{'http://35.196.3.185:3002/watch/'+ (video$ | async)?.id}}" type="video/mp4">
-      </video>
+<vg-player>
+  <vg-controls>
+      <vg-play-pause></vg-play-pause>
+      <vg-playback-button></vg-playback-button>
+
+      <vg-time-display vgProperty="current" vgFormat="mm:ss" vgAutohide = "true" vgAutohideTime="1.5"></vg-time-display>
+
+      <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+
+      <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+      <vg-mute></vg-mute>
+      <vg-volume></vg-volume>
+
+      <vg-fullscreen></vg-fullscreen>
+  </vg-controls>
+
+  <video [vgMedia]="media" #media  preload="true" autoplay = "true" >
+      <source src= "http://35.196.3.185:3002/watch/{{videoId}}" type="video/mp4">
+  </video>
+  </vg-player>
+    <h3> {{ (video$ | async)?.title }} </h3>
+      <p>
+          <ng-container>
+              {{(video$| async).views + ' Vistas' }}
+          </ng-container>
+      </p>
 </div>
--->
+</div>
+
+<app-commentaries></app-commentaries>
+
+
+
+
+
 

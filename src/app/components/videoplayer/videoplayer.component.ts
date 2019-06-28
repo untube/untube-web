@@ -13,7 +13,7 @@ import { resultKeyNameFromField } from 'apollo-utilities';
 @Component({  
   selector: 'app-videoplayer',
   templateUrl: './videoplayer.component.html',
-  styleUrls: ['./videoplayer.component.css']
+  styleUrls: ['./videoplayer.component.scss']
 })
 export class VideoplayerComponent implements OnInit {
 
@@ -23,6 +23,7 @@ export class VideoplayerComponent implements OnInit {
   baseURL = "http://35.196.3.185:3002/watch";
   queue = [];
   src: String;
+
 
   constructor(private route: ActivatedRoute,private apollo: Apollo , private wss: WebsocketService) { 
 

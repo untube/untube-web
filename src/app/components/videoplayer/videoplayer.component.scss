@@ -1,0 +1,37 @@
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+	padding-bottom: 25px;
+}
+
+.content {
+    margin: 8px;
+}
+
+video{
+    width: stretch;
+    height: stretch;
+}
+
+.video-container{
+    display: inline-block;
+    text-align: left;
+    width: 853px;
+    height: 570px;
+}
+
+
+vg-player {
+    font-family: 'videogular';
+    width: 853px;
+    height: 480px;
+	overflow: hidden;
+	background-color: black;
+	padding: 0%
+
+}
+
+
