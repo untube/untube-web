@@ -43,6 +43,7 @@ import { AngularFireModule } from '@angular/fire';
 import { MessagingService } from './shared/messaging.service';
 import { environment } from '../environments/environment';
 import { AsyncPipe } from '../../node_modules/@angular/common';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
     SignUpComponent,
     UploadComponent,
     VideofileComponent,
-    CommentariesComponent
+    CommentariesComponent,
+    RecommendationsComponent
     ],
   imports: [
     BrowserModule,

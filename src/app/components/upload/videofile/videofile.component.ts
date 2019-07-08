@@ -26,10 +26,9 @@ export class VideofileComponent implements OnInit {
   category_id : string
   uploadValue: number;
   fileText = document.getElementById("custom-text")
+  videoText = "No se ha seleccionado ningun archivo"
 
-  constructor(private service: VideouploadService,private http: HttpClient
-    /*,public dialogRef: MatDialogRef<VideofileComponent>*/,private apollo: Apollo,private notification: NotificationService,private route: ActivatedRoute,
-    /*@Inject(MAT_DIALOG_DATA) public data: any*/) { }
+  constructor(private service: VideouploadService,private http: HttpClient,private apollo: Apollo,private notification: NotificationService,private route: ActivatedRoute,private router: Router) { }
 
   categories = [
 
@@ -73,12 +72,13 @@ export class VideofileComponent implements OnInit {
 
     console.log("Elegí Archivo")
     this.selectedFile = <File> event.target.files[0]
-    console.log(event)
+    console.log(this.selectedFile)
     if(this.selectedFile){
-      this.fileText.innerHTML = this.selectedFile.name
+      console.log(this.selectedFile)
+      this.videoText = this.selectedFile.name
     }
     else{
-      this.fileText.innerHTML = "No se ha seleccionado ningun archivo"
+      this.videoText = "No se ha seleccionado ningun archivo"
     }
 
   }
@@ -118,6 +118,7 @@ export class VideofileComponent implements OnInit {
         console.log("Upload progress: " +  Math.round(event.loaded / event.total * 100 ) + '%');
         if(this.uploadValue == 100){
           this.notification.succes('::Carga Exitosa')
+          this.router.navigate(['/profile/upload']);
         }
       }else if (event.type === HttpEventType.Response){
         console.log(event)
@@ -158,7 +159,7 @@ export class VideofileComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       console.log('got data', data);
-      this.notification.succes('::Carga Exitosa')
+      this.notification.succes('Video Publicado')
     },(error) => {
       console.log('there was an error sending the query', error);
     });

@@ -45,6 +45,7 @@ query videoById($id: String!){
     description
     image
     views
+    category_id
   }
 }
 `

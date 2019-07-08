@@ -39,7 +39,7 @@
             <button mat-raised-button color = "primary" (click) = "fileInput.click()"  attachment>
                 <mat-icon>attachment</mat-icon>
                 Elegir Archivo</button>
-            <span id = "custom-text">No se ha seleccionado ningun archivo</span>
+            <span>{{videoText}}</span>
           </div> 
           <div>
               <mat-progress-bar [mode]="determinate" [value]="uploadValue"></mat-progress-bar>

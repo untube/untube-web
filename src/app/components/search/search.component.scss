@@ -43,5 +43,8 @@
     color: #f48fb1;
     }
 
-
-
+    @media only screen and (max-width: 800px) {
+        div {
+            display: none;
+        }
+      }

@@ -36,6 +36,7 @@
     padding: 0;
     margin: 0;
     cursor: pointer;
+    color: white;
   }
   
   .icon {
@@ -46,6 +47,8 @@
     text-align: center;
     vertical-align: middle;
     width: 15%;
+    color: white;
+
   }
   
   .label {
@@ -65,9 +68,8 @@
 button.navbar-toggle.pull-left {
     margin-left: 15px;
 }
-@media only screen and (max-width:768px){
+@media only screen and (max-width:1098px){
     .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-        border-color: rgba(0,0,0,0);
         margin-top: 0;
         padding-top: 8px;
     }
@@ -79,8 +81,6 @@ button.navbar-toggle.pull-left {
         margin-left: -15px;
         border-top: 0px solid transparent;
         border-bottom: 0px solid transparent;
-        -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
-        box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 0px 0 rgba(255,255,255,.1);
     }
 }
 

@@ -6,7 +6,7 @@
 
 
 h3 {
-	font-family: Moderne Sans, sans-serif;
+	font-family: Modeerne Sans, sans-serif;
 	text-align: center;
 	font-size: 3.0rem;
 	width: 100%;
@@ -22,14 +22,12 @@ h3 {
     background-size: auto auto; 
     height: 75px;
     margin: 15px;
+
   }
 
 
-  .grid{
-    margin-top: 45px;
-  }
 
-  @import '~compass-mixins/lib/compass/css3';
+@import '~compass-mixins/lib/compass/css3';
 // Spin animation
 @keyframes spin {
   to { transform: rotate(360deg); }

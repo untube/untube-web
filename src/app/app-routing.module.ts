@@ -11,6 +11,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { CommentariesComponent } from './components/commentaries/commentaries.component';
 import { VideofileComponent } from './components/upload/videofile/videofile.component';
 import { AuthGuardService as AuthGuard, AuthGuardService } from './services/auth-guard.service';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 const routes: Routes = [
 
   {path: 'sign-in', component: SignInComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'categories/:id', component: CategoryvideolistComponent},
   {path: 'search/:name', component: SearchlistComponent},
   {path: 'profile', component: UploadComponent, canActivate: [AuthGuard]},
+  {path: 'recommendations', component: RecommendationsComponent},
   {path: 'profile/upload', component: VideofileComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full' }
 
