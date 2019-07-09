@@ -24,7 +24,6 @@
     width: 50%;
     margin: auto;
     padding: 10px;
-
  }
 
  .center {
@@ -45,7 +44,6 @@
     border-color: #808080;
 
 }
-
 
 mat-progress-bar {
     width: "60%";

@@ -1,15 +1,13 @@
-import { Component, OnInit, Inject, EventEmitter,Output} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {VideouploadService} from '../../../services/videoupload.service'
 import { HttpClient, HttpEventType} from '@angular/common/http';
-import {MatDialogRef} from '@angular/material'
-import {Video,CREATE_VIDEO} from '../../../models/video'
+import {CREATE_VIDEO} from '../../../models/video'
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { Category, Query, ALL_CATEGORIES } from 'src/app/models/category';
 import {NotificationService} from '../../../services/notification.service'
 import { map } from 'rxjs/operators';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {MAT_DIALOG_DATA} from '@angular/material'
 import { TokenQuery, IS_AUTHENTICATED } from 'src/app/models/token';
 
 

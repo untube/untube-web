@@ -10,7 +10,8 @@ h3 {
 	text-align: center;
 	font-size: 3.0rem;
 	width: 100%;
-	letter-spacing: .5rem;
+  letter-spacing: .5rem;
+  margin-top: 10px;
   }
 
   header{
@@ -19,8 +20,9 @@ h3 {
     background: linear-gradient(rgba(0, 0, 0, 0.322), rgba(0, 0, 0, 0.322)), url("/assets/category-cover.jpg");
     background-repeat: no-repeat;
     background-position: center center;
-    height: 75px;
+    height: 50px;
     margin: 15px;
+    border-radius: 10px 10px 10px 10px !important;
 
   }
 

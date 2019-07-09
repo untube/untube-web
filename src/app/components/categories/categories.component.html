@@ -6,7 +6,7 @@
   </header>
 
     <div fxFlex class = "grid-categories">
-      <mat-grid-list cols="2" rowHeight="250px" [gutterSize]="'20px'">
+      <mat-grid-list cols="2" rowHeight="250px" [gutterSize]="'25px'">
         <mat-grid-tile *ngFor="let category of categories$ | async" (click) = "onSelect (category)">
           <img class = "tile-image"  src= "../assets/{{category.category}}.jpg" alt= {{category.category}}>
           <!--<mat-grid-tile-footer>

@@ -44,6 +44,8 @@ import { MessagingService } from './shared/messaging.service';
 import { environment } from '../environments/environment';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { SitesComponent } from './components/sites/sites.component';
+import {MatRadioModule} from '@angular/material/radio'; 
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { RecommendationsComponent } from './components/recommendations/recommend
     UploadComponent,
     VideofileComponent,
     CommentariesComponent,
-    RecommendationsComponent
+    RecommendationsComponent,
+    SitesComponent
     ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ import { RecommendationsComponent } from './components/recommendations/recommend
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatRadioModule,
     MatFormFieldModule,
     MatSnackBarModule,
     MatProgressBarModule,

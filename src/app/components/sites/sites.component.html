@@ -1,0 +1,20 @@
+<div class="container" fxLayout="column" fxLayoutGap="5px"  width =  "25%">
+  
+  <div class = "tp-container">
+    <mat-card>
+
+        <mat-radio-group aria-label="Select an option"  [(ngModel)]="userId">
+            <mat-radio-button value= 1 >1</mat-radio-button>
+            <mat-radio-button value= 2 >2</mat-radio-button>
+            <mat-radio-button value= 3 >3</mat-radio-button>
+            <mat-radio-button value= 4 >4</mat-radio-button>
+            <mat-radio-button value= 5 >5</mat-radio-button>
+        </mat-radio-group>
+          
+        <h4>{{userId}}</h4>
+        <button mat-raised-button color = "primary" (click) = "getCount()">Enviar</button>
+        <p>{{result}}</p>
+    </mat-card>
+  </div>
+  
+  

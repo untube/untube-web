@@ -20,7 +20,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/play.ico"
             ],
             "styles": [
               "src/custom-theme.scss",
@@ -88,6 +89,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/play.ico",
               "src/firebase-messaging-sw.js", 
               "src/manifest.json" 
             ]

@@ -10,7 +10,8 @@ h3 {
 	text-align: center;
 	font-size: 3.0rem;
 	width: 100%;
-	letter-spacing: .5rem;
+  letter-spacing: .5rem;
+  margin-top: 10px
   }
 
   header{
@@ -20,8 +21,9 @@ h3 {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: auto auto; 
-    height: 75px;
+    height: 50px;
     margin: 15px;
+    border-radius: 10px 10px 10px 10px !important;
   }
 
 

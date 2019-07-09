@@ -1,0 +1,19 @@
+.mat-raised-button {
+    background: #007bff;
+    color: #fff;
+}   
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  
+
+  .tp-container {
+    display: flex;
+    flex-direction: column;
+ }
+ .tp-container > * {
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+ }
