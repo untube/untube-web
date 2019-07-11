@@ -115,8 +115,8 @@ export class VideofileComponent implements OnInit {
         this.uploadValue = Math.round(event.loaded / event.total * 100 )
         console.log("Upload progress: " +  Math.round(event.loaded / event.total * 100 ) + '%');
         if(this.uploadValue == 100){
-          this.notification.succes('::Carga Exitosa')
-          this.router.navigate(['/profile/upload']);
+          this.notification.succes('Video Publicado')
+          this.router.navigate(['/profile']);
         }
       }else if (event.type === HttpEventType.Response){
         console.log(event)
