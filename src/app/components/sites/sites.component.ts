@@ -26,7 +26,7 @@ getCount(){
   }
   this.httpClient.post(this.baseUrl,postData).toPromise().then((data: any) =>{
       console.log(data)
-      this.response = JSON.stringify(data.json);
+      this.response = JSON.stringify(data);
   });  
 
 }

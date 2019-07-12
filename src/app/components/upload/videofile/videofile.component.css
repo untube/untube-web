@@ -1,6 +1,6 @@
 #custom-button{
     padding: 10px;
-    color: #4b9cda;
+    color: #3860d8;
     border: 1px solid #000;
     border-radius: 5px;
     cursor: pointer;
@@ -34,7 +34,7 @@
   }
 
 .mat-raised-button {
-    background: #007bff;
+    background: #3860d8;
     color: #fff;
 }
 

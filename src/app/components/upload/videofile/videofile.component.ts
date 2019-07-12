@@ -128,7 +128,7 @@ export class VideofileComponent implements OnInit {
   onClear(){
     this.service.form.reset()
     this.service.initilizeFormGroup;
-
+    this.router.navigate(['/profile']);
   }
 
   onSubmit(){
@@ -144,23 +144,5 @@ export class VideofileComponent implements OnInit {
     this.category_id = category.id
   }
 
-
-  newVideo(video) {
-    this.apollo.mutate({
-      mutation: CREATE_VIDEO,
-      variables: {
-        user_id: video.user_id,
-        category_id: video.category_id,
-        title: video.title,
-        destination: video.destination,
-        description: video.description
-      }
-    }).subscribe(({ data }) => {
-      console.log('got data', data);
-      this.notification.succes('Video Publicado')
-    },(error) => {
-      console.log('there was an error sending the query', error);
-    });
-  }
 
 }

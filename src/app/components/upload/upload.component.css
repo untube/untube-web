@@ -53,6 +53,10 @@ header {
 
 
 .mat-raised-button {
-  background: #007bff;
+  background: #3860d8;
   color: #fff;
+}
+
+.block{
+  align-content: center
 }

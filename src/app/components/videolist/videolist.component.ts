@@ -15,6 +15,8 @@ export class VideolistComponent implements OnInit{
 
   videos$: Observable<Video[]>;
 
+  actualPage: number = 1;
+
   constructor(private router: Router, private apollo: Apollo){ }
 
   ngOnInit() {

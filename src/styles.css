@@ -85,3 +85,9 @@ textarea.ng-invalid  {
     font-weight: bold;
   }
 
+  #paginate-controls{
+
+    margin-top : 15px;
+    padding-right: 50px;
+  
+  }

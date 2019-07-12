@@ -6,7 +6,7 @@
 
   <div fxFlex class = "grid">
     <mat-grid-list cols="2" rowHeight="300px" [gutterSize]="'20px'">
-      <mat-grid-tile *ngFor="let video of videos$ | async" (click) = "onSelect (video)">
+      <mat-grid-tile *ngFor="let video of videos$ | async | paginate: {itemsPerPage: 4, currentPage:actualPage}" (click) = "onSelect (video)">
         <img class = "tile-image"  src= "{{'data:image/png;base64,'+video.image}}" alt= "../assets/video.png">
         <svg version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="100px" width="100px"
           viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -20,8 +20,23 @@
           <h1>{{video.title | uppercase}}</h1>
         </mat-grid-tile-footer>
       </mat-grid-tile>
+
     </mat-grid-list>
+
+    <div id = "paginate-controls">
+        <pagination-controls (pageChange) = "actualPage = $event" 
+          maxSize="9"
+          directionLinks="true"
+          autoHide="true"
+          responsive="true"
+          previousLabel=" "
+          nextLabel=" "
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page">
+      </pagination-controls>
+    </div>
   </div>
+
 </div>
 
 

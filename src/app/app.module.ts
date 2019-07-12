@@ -46,6 +46,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { SitesComponent } from './components/sites/sites.component';
 import {MatRadioModule} from '@angular/material/radio'; 
+import {NgxPaginationModule} from 'ngx-pagination'
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import {MatRadioModule} from '@angular/material/radio';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireMessagingModule,
+    NgxPaginationModule,  
     AngularFireModule.initializeApp(environment.firebase),
   ],
   exports: [
