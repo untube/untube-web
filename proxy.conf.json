@@ -1,6 +1,6 @@
 {
     "/upload/*":{
-        "target": "video-manager-ms",
+        "target": "manager-ms",
         "secure": false,
         "changeOrigin": true
     },
