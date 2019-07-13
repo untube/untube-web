@@ -1,6 +1,6 @@
 {
     "/upload/*":{
-        "target": "http://35.196.3.185:3001",
+        "target": "video-manager-ms",
         "secure": false,
         "changeOrigin": true
     },

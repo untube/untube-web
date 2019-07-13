@@ -24,7 +24,7 @@
   </vg-controls>
 
   <video [vgMedia]="media" #media  preload="true" autoplay = "true" >
-      <source src= "http://35.196.3.185:3002/watch/{{videoId}}" type="video/mp4">
+      <source src = "{{baseURL}}" type="video/mp4">
   </video>
   </vg-player>
     <h3> {{ (video$ | async)?.title }} </h3>

@@ -19,7 +19,8 @@ export class VideoplayerComponent implements OnInit {
   mode: number = 1;
   videoId;
   video$: Observable <Video>;
-  baseURL = "http://35.196.3.185:3002/watch";
+  //baseURL = "http://35.196.3.185:3002/watch/";
+  baseURL = "video-reproduction-ms/watch/";
   queue = [];
   src: String;
   id_user = 1;
@@ -34,6 +35,7 @@ export class VideoplayerComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
     let id = params.get('id');
     this.videoId = id;
+    this.baseURL = this.baseURL + this.videoId
   });
 
   this.video$ = this.apollo.watchQuery<Query>(
