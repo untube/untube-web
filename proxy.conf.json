@@ -9,10 +9,5 @@
         "target": "http://35.196.3.185:3008",
         "secure": false,
         "changeOrigin": true
-    },
-    "/graphql/*":{
-        "target": "http://35.196.3.185:3008",
-        "secure": false,
-        "changeOrigin": true
     }
 }
