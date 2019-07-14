@@ -1,6 +1,6 @@
 {
     "/upload/*":{
-        "target": "manager-ms",
+        "target": "http://manager-ms",
         "secure": false,
         "changeOrigin": true
     },

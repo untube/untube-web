@@ -20,7 +20,7 @@ export class VideoplayerComponent implements OnInit {
   videoId;
   video$: Observable <Video>;
   //baseURL = "http://35.196.3.185:3002/watch/";
-  baseURL = "reproduction-ms/watch/";
+  baseURL = "http://reproduction-ms/watch/";
   queue = [];
   src: String;
   id_user = 1;

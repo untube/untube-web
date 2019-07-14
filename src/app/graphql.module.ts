@@ -5,7 +5,7 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 
 //const uri = 'http://34.73.94.91:5000/graphql'
 //const uri = 'http://35.196.3.185/graphql'
-const uri = 'untube-api/graphql'
+const uri = 'http://untube-api/graphql'
 
 export function createApollo(httpLink: HttpLink) {
   return {
