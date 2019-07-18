@@ -2,6 +2,7 @@
     background: linear-gradient(rgba(0, 0, 0, 0.322), rgba(0, 0, 0, 0.322)), url("/assets/login-cover.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100%;
     
 }
 
@@ -18,3 +19,20 @@
     font-family: Courgette;
     color: white;
 }
+
+
+@media (max-width: 650px) {
+	body.custom-background {
+		background-attachment: scroll;
+    }
+    
+    #login {
+        background: linear-gradient(rgba(0, 0, 0, 0.322), rgba(0, 0, 0, 0.322)), url("/assets/login-cover.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: stretch;
+    }
+}
+
+
+  
