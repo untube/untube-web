@@ -1,12 +1,24 @@
 {
     "/upload/*":{
-        "target": "http://35.196.3.185:3001",
+        "target": "http://34.74.195.117:4006",
         "secure": false,
         "changeOrigin": true
     },
 
     "/countplaces/*":{
         "target": "http://35.196.3.185:3008",
+        "secure": false,
+        "changeOrigin": true
+    },
+
+    "/watch/*":{
+        "target": "http://35.227.124.114:4005",
+        "secure": false,
+        "changeOrigin": true
+    },
+
+    "/graphql/*":{
+        "target": "http://35.196.3.185",
         "secure": false,
         "changeOrigin": true
     }
