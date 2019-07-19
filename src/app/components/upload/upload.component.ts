@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import {TokenQuery,IS_AUTHENTICATED,Token} from '../../models/token';
+import {DELETE_VB} from '../../models/recommendation';
 
 @Component({
   selector: 'app-upload',
@@ -83,11 +84,20 @@ export class UploadComponent implements OnInit {
         console.log('got data', data);
         this.notification.succes('Video Eliminado')
       },(error) => {
-        console.log('there was an error sending the query', error);
+        console.log('there was an error sending the mutation', error);
+      });
+
+      this.apollo.mutate({
+        mutation: DELETE_VB,
+        variables:{
+          id: videoId
+        }
+      }).subscribe(({data}) => {
+        console.log(data)
+      },(error) => {
+        console.log('there was an error sending the mutation', error);
       });
     } 
-
-    
 
   }
 

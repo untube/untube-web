@@ -35,3 +35,9 @@ mutation feedUserDB($id_user: Int!,$id_category: String!) {
     })
   }
 `
+
+export const DELETE_VB = gql `
+mutation purgeVideoDB($id: String!) {
+    feedUserDB(id: $id)
+  }
+`
